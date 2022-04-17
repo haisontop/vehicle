@@ -11,6 +11,7 @@ const LayoutRoot = styled("div")(({ theme }) => ({
   flex: "1 1 auto",
   maxWidth: "100%",
   paddingTop: 64,
+  backgroundColor:theme.palette.grey[500_8]
 }));
 
 const Layout = (props) => {

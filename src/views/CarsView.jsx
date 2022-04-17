@@ -399,7 +399,8 @@ const CarsView = () => {
               xs={12}
               sm={3}
               md={4}
-              classes={{ item: classes.filterContainer }}
+              sx={{borderRight:'1px sold lightgray'}}
+              // classes={{ item: classes.filterContainer }}
             >
               <CarsFilter
                 handleSubmit={handleClickSearch}

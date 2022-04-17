@@ -3,6 +3,7 @@ import {
   ButtonGroup,
   Card,
   Grid,
+  Stack,
   ListSubheader,
   MenuItem,
   Select,
@@ -186,7 +187,8 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="distance">
                     {({ field, form }) => (
-                      <Select
+                     <Select
+                      size="large"
                         placeholder="National"
                         fullWidth
                         {...field}
@@ -214,7 +216,8 @@ const CarsFilter = ({
                   <Field name="standardMake">
                     {({ field, form }) => {
                       return (
-                        <Select
+                       <Select
+                      size="large"
                           className="gtm-select-field"
                           placeholder="Make"
                           fullWidth
@@ -255,14 +258,15 @@ const CarsFilter = ({
                       const currentModelOptions =
                         currentModelTarget && currentModelTarget.options
                           ? currentModelTarget.options.map((option) => ({
-                              value: option.value,
-                              label: option.value,
-                            }))
+                            value: option.value,
+                            label: option.value,
+                          }))
                           : [];
 
                       return (
                         <FormControl disabled={!values.standardMake} fullWidth>
-                          <Select
+                         <Select
+                      size="large"
                             className="gtm-select-field"
                             placeholder="Model"
                             fullWidth
@@ -295,7 +299,8 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="minPrice">
                     {({ field, form }) => (
-                      <Select
+                     <Select
+                      size="large"
                         className="gtm-select-field"
                         placeholder="Min Price"
                         fullWidth
@@ -323,7 +328,8 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="maxPrice">
                     {({ field, form }) => (
-                      <Select
+                     <Select
+                      size="large"
                         className="gtm-select-field"
                         placeholder="Max Price"
                         fullWidth
@@ -351,7 +357,8 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="minOdometerReadingMiles">
                     {({ field, form }) => (
-                      <Select
+                     <Select
+                      size="large"
                         className="gtm-select-field"
                         placeholder="Min Mileage"
                         fullWidth
@@ -379,7 +386,8 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="maxOdometerReadingMiles">
                     {({ field, form }) => (
-                      <Select
+                     <Select
+                      size="large"
                         className="gtm-select-field"
                         placeholder="Max Mileage"
                         fullWidth
@@ -432,7 +440,8 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="minManufacturedYear">
                     {({ field, form }) => (
-                      <Select
+                     <Select
+                      size="large"
                         className="gtm-select-field"
                         placeholder="Min Year"
                         fullWidth
@@ -460,7 +469,8 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="maxManufacturedYear">
                     {({ field, form }) => (
-                      <Select
+                     <Select
+                      size="large"
                         className="gtm-select-field"
                         placeholder="Max Year"
                         fullWidth
@@ -488,7 +498,8 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="standardFuelType">
                     {({ field, form }) => (
-                      <Select
+                     <Select
+                      size="large"
                         className="gtm-select-field"
                         placeholder="Fuel Type"
                         fullWidth
@@ -516,7 +527,8 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="standardTransmissionType">
                     {({ field, form }) => (
-                      <Select
+                     <Select
+                      size="large"
                         className="gtm-select-field"
                         placeholder="Gearbox"
                         fullWidth
@@ -545,7 +557,8 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="standardBodyType">
                     {({ field, form }) => (
-                      <Select
+                     <Select
+                      size="large"
                         className="gtm-select-field"
                         placeholder="Body Type"
                         fullWidth
@@ -577,7 +590,8 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="doors">
                     {({ field, form }) => (
-                      <Select
+                     <Select
+                      size="large"
                         className="gtm-select-field"
                         placeholder="Doors"
                         fullWidth
@@ -606,7 +620,8 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="minSeats">
                     {({ field, form }) => (
-                      <Select
+                     <Select
+                      size="large"
                         className="gtm-select-field"
                         placeholder="Min Seats"
                         fullWidth
@@ -634,7 +649,8 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="maxSeats">
                     {({ field, form }) => (
-                      <Select
+                     <Select
+                      size="large"
                         className="gtm-select-field"
                         placeholder="Max Seats"
                         fullWidth
@@ -664,6 +680,7 @@ const CarsFilter = ({
                   <Field name="standardColour">
                     {({ field, form }) => (
                       <Select
+                      size="large"
                         className="gtm-select-field"
                         placeholder="Color"
                         fullWidth
@@ -696,38 +713,38 @@ const CarsFilter = ({
                     display: { xs: "none", sm: "block" },
                   }}
                 >
-                  <LoadingButton
-                    type="submit"
-                    color="primary"
-                    variant="contained"
-                    id="search-button"
-                    fullWidth
-                    loading={loading}
-                  >
-                    Search
-                  </LoadingButton>
-                  {havingError && (
-                    <Typography color="red">
-                      Searching had some issues. Please try again later
-                    </Typography>
-                  )}
-                </Grid>
-                <Grid
-                  item
-                  xs={6}
-                  sx={{
-                    display: { xs: "none", sm: "block" },
-                  }}
-                >
-                  <LoadingButton
-                    color="primary"
-                    variant="contained"
-                    fullWidth
-                    id="reset-button"
-                    onClick={() => handleResetFilter(resetForm)}
-                  >
-                    Reset Filters
-                  </LoadingButton>
+                  <Stack direction={'row'} spacing={2} justifyContent={'space-between'}>
+                    <Box flexGrow={1}>
+                      <LoadingButton
+                        type="submit"
+                        variant="contained"
+                        id="search-button"
+                        size="large"
+                        fullWidth
+                        loading={loading}
+                        sx={{
+                         
+                          paddingY: 3,
+                          borderRadius: 5,
+                        }}
+                      >
+                        Search
+                      </LoadingButton>
+                      {havingError && (
+                        <Typography color="red">
+                          Searching had some issues. Please try again later
+                        </Typography>
+                      )}
+                    </Box>
+                    <IconButton
+                    size="large"
+                      onClick={() => handleResetFilter(resetForm)}
+                      sx={{ backgroundColor: 'primary.lighter','&:hover':{backgroundColer:'primary.light'} }}
+                    >
+                      <CloseIcon />
+                    </IconButton>
+                  </Stack>
+
                 </Grid>
                 <Paper
                   sx={{
@@ -836,7 +853,7 @@ const CarsFilter = ({
         display={{ xs: "none", sm: "block" }}
         sx={{ position: "sticky", top: "84px" }}
       >
-        <Card sx={{ p: 2 }}>{renderForm()}</Card>
+        <Box sx={{ p: 2 }}>{renderForm()}</Box>
       </Box>
     </>
   );

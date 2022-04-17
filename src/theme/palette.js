@@ -18,6 +18,7 @@ const GREY = {
   700: "#454F5B",
   800: "#212B36",
   900: "#161C24",
+  500_4:alpha("#919EAB", 0.04),
   500_8: alpha("#919EAB", 0.08),
   500_12: alpha("#919EAB", 0.12),
   500_16: alpha("#919EAB", 0.16),
@@ -29,11 +30,11 @@ const GREY = {
 };
 
 const PRIMARY = {
-  // lighter: "#FFE6D8",
-  // light: "#FFA18B",
-  main: "#03A9F4",
-  // dark: "#B71F36",
-  // darker: "#7A0C2F",
+  lighter: "#6b84c7",
+  light: "#385194",
+  main: "#23325c",
+  dark: "#1c284a",
+  darker: "#151e37",
   contrastText: "#fff",
 };
 const SECONDARY = {

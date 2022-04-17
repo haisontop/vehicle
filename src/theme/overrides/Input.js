@@ -5,6 +5,7 @@ export default function Input(theme) {
     MuiInputBase: {
       styleOverrides: {
         root: {
+          backgroundColor:theme.palette.common.white,
           '&.Mui-disabled': {
             '& svg': { color: theme.palette.text.disabled }
           }
@@ -51,11 +52,12 @@ export default function Input(theme) {
       styleOverrides: {
         root: {
           '& .MuiOutlinedInput-notchedOutline': {
-            borderColor: theme.palette.grey[500_32]
+            // borderColor: theme.palette.grey[500_32]
+            border:'none',
           },
           '&.Mui-disabled': {
             '& .MuiOutlinedInput-notchedOutline': {
-              borderColor: theme.palette.action.disabledBackground
+              // borderColor: theme.palette.action.disabledBackground
             }
           }
         }

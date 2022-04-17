@@ -7,6 +7,7 @@ import {
   Typography,
   Grid,
   Divider,
+  IconButton,
   Chip,
   Stack,
 } from "@mui/material";
@@ -18,6 +19,7 @@ import { TransmissionTypeIcon } from "../icons/TransmissionTypeIcon";
 import { ClipboardIcon } from "../icons/ClipboardIcon";
 import { FuelTypeIcon } from "../icons/FuelTypeIcon";
 import { DealerIcon } from "../icons/DealerIcon";
+import CloseIcon from "@mui/icons-material/Close";
 import { useTheme } from "@emotion/react";
 import {
   getPriceIndicatorColor,
@@ -25,6 +27,7 @@ import {
   getPriceIndicatorLabelColor,
   toTitleCase,
 } from "../../utils";
+import { Favorite } from "@mui/icons-material";
 
 const GridForDivider = styled(Grid)(({ theme }) => ({
   width: "100%",
@@ -54,14 +57,16 @@ const CarOverviewCard = ({ details, handleClickCard }) => {
 
   return (
     <Card
-      sx={{ height: "100%", p: 0, borderRadius: 1 }}
+      sx={{ height: "100%", p: 0, borderRadius: 1,position:'relative' }}
       className="car-details-card"
     >
+      <IconButton  sx={{position:'absolute',zIndex:20, top:'1rem', right:'1rem',bgcolor:'primary.main',color:'white'}}>
+        <CloseIcon/>
+      </IconButton>
       <CardActionArea
         onClick={() => handleClickCard(metadata.stockId)}
         sx={{
           height: "100%",
-          p: 1.5,
           alignItems: "start",
           display: "flex",
           flexDirection: "column",
@@ -89,19 +94,9 @@ const CarOverviewCard = ({ details, handleClickCard }) => {
             }}
           />
         )}
-        <CardContent sx={{ px: 0, py: 1.5, flexGrow: 1 }}>
+        <CardContent sx={{ p:2, flexGrow: 1 }}>
           <Grid container spacing={1} height="100%">
-            <Grid item xs={12}>
-              <Box
-                display="column"
-                alignItems="start"
-                minHeight={{ xs: theme.spacing(6), md: theme.spacing(7.5) }}
-              >
-                <Typography variant="h4" sx={{ lineHeight: 1.2 }}>
-                  {vehicle.make} {vehicle.model}
-                </Typography>
-              </Box>
-            </Grid>
+           
             <Grid item xs={12}>
               <Stack
                 direction="row"
@@ -149,6 +144,17 @@ const CarOverviewCard = ({ details, handleClickCard }) => {
                     />
                   )}
               </Stack>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Box
+                display="column"
+                alignItems="start"
+              >
+                <Typography variant="h4" sx={{ lineHeight: 1.2 }}>
+                  {vehicle.make} {vehicle.model}
+                </Typography>
+              </Box>
             </Grid>
             <Grid item xs={12} minHeight="54px">
               <Box display="flex" direction="row" gap={0.5} flexWrap="wrap">
