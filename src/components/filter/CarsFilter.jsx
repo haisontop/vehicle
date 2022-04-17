@@ -412,31 +412,7 @@ const CarsFilter = ({
                     )}
                   </Field>
                 </Grid>
-                <Grid item xs={12} sm={12} md={12}>
-                  <Field name="emissionScheme">
-                    {({ field, form }) => (
-                      <FormControlLabel
-                        control={
-                          <Switch
-                            className="gtm-select-field"
-                            checked={field.value === "ulez"}
-                            onChange={(event) => {
-                              form.setFieldValue(
-                                field.name,
-                                event.target.checked ? "ulez" : ""
-                              );
-                            }}
-                            inputProps={{ "aria-label": "controlled" }}
-                            onClick={() => {
-                              handleTrackingSearchField(field.name);
-                            }}
-                          />
-                        }
-                        label="Only show ULEZ compliant cars"
-                      />
-                    )}
-                  </Field>
-                </Grid>
+              
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="minManufacturedYear">
                     {({ field, form }) => (
@@ -702,6 +678,32 @@ const CarsFilter = ({
                           </MenuItem>
                         ))}
                       </Select>
+                    )}
+                  </Field>
+                </Grid>
+
+                <Grid item xs={12} sm={12} md={12}>
+                  <Field name="emissionScheme">
+                    {({ field, form }) => (
+                      <FormControlLabel
+                        control={
+                          <Switch
+                            className="gtm-select-field"
+                            checked={field.value === "ulez"}
+                            onChange={(event) => {
+                              form.setFieldValue(
+                                field.name,
+                                event.target.checked ? "ulez" : ""
+                              );
+                            }}
+                            inputProps={{ "aria-label": "controlled" }}
+                            onClick={() => {
+                              handleTrackingSearchField(field.name);
+                            }}
+                          />
+                        }
+                        label="Only show ULEZ compliant cars"
+                      />
                     )}
                   </Field>
                 </Grid>

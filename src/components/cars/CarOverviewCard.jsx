@@ -19,7 +19,7 @@ import { TransmissionTypeIcon } from "../icons/TransmissionTypeIcon";
 import { ClipboardIcon } from "../icons/ClipboardIcon";
 import { FuelTypeIcon } from "../icons/FuelTypeIcon";
 import { DealerIcon } from "../icons/DealerIcon";
-import CloseIcon from "@mui/icons-material/Close";
+import HeartIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import { useTheme } from "@emotion/react";
 import {
   getPriceIndicatorColor,
@@ -61,7 +61,7 @@ const CarOverviewCard = ({ details, handleClickCard }) => {
       className="car-details-card"
     >
       <IconButton  sx={{position:'absolute',zIndex:20, top:'1rem', right:'1rem',bgcolor:'primary.main',color:'white'}}>
-        <CloseIcon/>
+        <HeartIcon/>
       </IconButton>
       <CardActionArea
         onClick={() => handleClickCard(metadata.stockId)}
