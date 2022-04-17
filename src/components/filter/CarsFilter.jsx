@@ -172,7 +172,7 @@ const CarsFilter = ({
         {({ handleChange, setFieldValue, values, errors, resetForm }) => {
           return (
             <Form>
-              <Grid container rowSpacing={4} columnSpacing={2}>
+              <Grid container spacing={2}>
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="postcode">
                     {({ field, form }) => (
@@ -183,7 +183,7 @@ const CarsFilter = ({
                           handleChange(event);
                         }}
                         fullWidth
-                        sx={{mt:0}}
+                        sx={{'& .MuiInputBase-root':{paddingY:4.5,borderRadius:1}}}
                        
                       ></TextField>
                     )}
