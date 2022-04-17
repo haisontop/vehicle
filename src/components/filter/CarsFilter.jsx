@@ -180,6 +180,7 @@ const CarsFilter = ({
                           handleChange(event);
                         }}
                         fullWidth
+                        sx={{paddingY:3}}
                       ></TextField>
                     )}
                   </Field>
@@ -187,8 +188,12 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="distance">
                     {({ field, form }) => (
-                     <Select
-                      size="large"
+                      <Select
+                        sx={{
+                          '& .MuiSelect-select': {
+                            paddingY:3
+                          }
+                        }}
                         placeholder="National"
                         fullWidth
                         {...field}
@@ -216,8 +221,12 @@ const CarsFilter = ({
                   <Field name="standardMake">
                     {({ field, form }) => {
                       return (
-                       <Select
-                      size="large"
+                        <Select
+                          size="large" sx={{
+                            '& .MuiSelect-select': {
+                              paddingY: 3
+                            }
+                          }}
                           className="gtm-select-field"
                           placeholder="Make"
                           fullWidth
@@ -265,8 +274,12 @@ const CarsFilter = ({
 
                       return (
                         <FormControl disabled={!values.standardMake} fullWidth>
-                         <Select
-                      size="large"
+                          <Select
+                            sx={{
+                              '& .MuiSelect-select': {
+                                paddingY: 3
+                              }
+                            }}
                             className="gtm-select-field"
                             placeholder="Model"
                             fullWidth
@@ -299,8 +312,12 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="minPrice">
                     {({ field, form }) => (
-                     <Select
-                      size="large"
+                      <Select
+                        sx={{
+                          '& .MuiSelect-select': {
+                            paddingY:3
+                          }
+                        }}
                         className="gtm-select-field"
                         placeholder="Min Price"
                         fullWidth
@@ -328,8 +345,12 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="maxPrice">
                     {({ field, form }) => (
-                     <Select
-                      size="large"
+                      <Select
+                        sx={{
+                          '& .MuiSelect-select': {
+                            paddingY:3
+                          }
+                        }}
                         className="gtm-select-field"
                         placeholder="Max Price"
                         fullWidth
@@ -357,8 +378,12 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="minOdometerReadingMiles">
                     {({ field, form }) => (
-                     <Select
-                      size="large"
+                      <Select
+                        sx={{
+                          '& .MuiSelect-select': {
+                            paddingY:3
+                          }
+                        }}
                         className="gtm-select-field"
                         placeholder="Min Mileage"
                         fullWidth
@@ -386,8 +411,12 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="maxOdometerReadingMiles">
                     {({ field, form }) => (
-                     <Select
-                      size="large"
+                      <Select
+                        sx={{
+                          '& .MuiSelect-select': {
+                            paddingY:3
+                          }
+                        }}
                         className="gtm-select-field"
                         placeholder="Max Mileage"
                         fullWidth
@@ -412,12 +441,16 @@ const CarsFilter = ({
                     )}
                   </Field>
                 </Grid>
-              
+
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="minManufacturedYear">
                     {({ field, form }) => (
-                     <Select
-                      size="large"
+                      <Select
+                        sx={{
+                          '& .MuiSelect-select': {
+                            paddingY:3
+                          }
+                        }}
                         className="gtm-select-field"
                         placeholder="Min Year"
                         fullWidth
@@ -445,8 +478,12 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="maxManufacturedYear">
                     {({ field, form }) => (
-                     <Select
-                      size="large"
+                      <Select
+                        sx={{
+                          '& .MuiSelect-select': {
+                            paddingY:3
+                          }
+                        }}
                         className="gtm-select-field"
                         placeholder="Max Year"
                         fullWidth
@@ -474,8 +511,12 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="standardFuelType">
                     {({ field, form }) => (
-                     <Select
-                      size="large"
+                      <Select
+                        sx={{
+                          '& .MuiSelect-select': {
+                            paddingY:3
+                          }
+                        }}
                         className="gtm-select-field"
                         placeholder="Fuel Type"
                         fullWidth
@@ -503,8 +544,12 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="standardTransmissionType">
                     {({ field, form }) => (
-                     <Select
-                      size="large"
+                      <Select
+                        sx={{
+                          '& .MuiSelect-select': {
+                            paddingY:3
+                          }
+                        }}
                         className="gtm-select-field"
                         placeholder="Gearbox"
                         fullWidth
@@ -533,8 +578,12 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="standardBodyType">
                     {({ field, form }) => (
-                     <Select
-                      size="large"
+                      <Select
+                        sx={{
+                          '& .MuiSelect-select': {
+                            paddingY:3
+                          }
+                        }}
                         className="gtm-select-field"
                         placeholder="Body Type"
                         fullWidth
@@ -566,8 +615,12 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="doors">
                     {({ field, form }) => (
-                     <Select
-                      size="large"
+                      <Select
+                        sx={{
+                          '& .MuiSelect-select': {
+                            paddingY:3
+                          }
+                        }}
                         className="gtm-select-field"
                         placeholder="Doors"
                         fullWidth
@@ -596,8 +649,12 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="minSeats">
                     {({ field, form }) => (
-                     <Select
-                      size="large"
+                      <Select
+                        sx={{
+                          '& .MuiSelect-select': {
+                            paddingY:3
+                          }
+                        }}
                         className="gtm-select-field"
                         placeholder="Min Seats"
                         fullWidth
@@ -625,8 +682,12 @@ const CarsFilter = ({
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="maxSeats">
                     {({ field, form }) => (
-                     <Select
-                      size="large"
+                      <Select
+                        sx={{
+                          '& .MuiSelect-select': {
+                            paddingY:3
+                          }
+                        }}
                         className="gtm-select-field"
                         placeholder="Max Seats"
                         fullWidth
@@ -656,7 +717,12 @@ const CarsFilter = ({
                   <Field name="standardColour">
                     {({ field, form }) => (
                       <Select
-                      size="large"
+                        sx={{
+                          '& .MuiSelect-select': {
+                            paddingY:3
+                          }
+                        }}
+
                         className="gtm-select-field"
                         placeholder="Color"
                         fullWidth
@@ -725,7 +791,7 @@ const CarsFilter = ({
                         fullWidth
                         loading={loading}
                         sx={{
-                         
+
                           paddingY: 3,
                           borderRadius: 5,
                         }}
@@ -739,9 +805,9 @@ const CarsFilter = ({
                       )}
                     </Box>
                     <IconButton
-                    size="large"
+                      size="large"
                       onClick={() => handleResetFilter(resetForm)}
-                      sx={{ backgroundColor: 'primary.lighter','&:hover':{backgroundColer:'primary.light'} }}
+                      sx={{ backgroundColor: 'primary.lighter', '&:hover': { backgroundColer: 'primary.light' } }}
                     >
                       <CloseIcon />
                     </IconButton>
