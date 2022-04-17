@@ -131,6 +131,9 @@ const CarsFilter = ({
     });
   };
 
+
+
+
   const renderSelectValue = (value) => {
     return value.replace(/(.*?)/, "");
   };
@@ -169,7 +172,7 @@ const CarsFilter = ({
         {({ handleChange, setFieldValue, values, errors, resetForm }) => {
           return (
             <Form>
-              <Grid container spacing={2}>
+              <Grid container rowSpacing={4} columnSpacing={2}>
                 <Grid item xs={12} sm={12} md={6}>
                   <Field name="postcode">
                     {({ field, form }) => (
@@ -180,7 +183,8 @@ const CarsFilter = ({
                           handleChange(event);
                         }}
                         fullWidth
-                        sx={{paddingY:3}}
+                        sx={{mt:0}}
+                       
                       ></TextField>
                     )}
                   </Field>
@@ -189,11 +193,7 @@ const CarsFilter = ({
                   <Field name="distance">
                     {({ field, form }) => (
                       <Select
-                        sx={{
-                          '& .MuiSelect-select': {
-                            paddingY:3
-                          }
-                        }}
+
                         placeholder="National"
                         fullWidth
                         {...field}
@@ -207,6 +207,12 @@ const CarsFilter = ({
                           handleTrackingSearchField(field.name);
                         }}
                         className="gtm-select-field"
+                        sx={{
+                           '& .MuiSelect-select': {
+                            paddingY: 3,
+                            backgroundColor:'common.white'
+                          }
+                        }}
                       >
                         {NATIONAL_OPTIONS.map((option) => (
                           <MenuItem value={option.value} key={option.value}>
@@ -222,9 +228,10 @@ const CarsFilter = ({
                     {({ field, form }) => {
                       return (
                         <Select
-                          size="large" sx={{
+                          sx={{
                             '& .MuiSelect-select': {
-                              paddingY: 3
+                              paddingY: 3,
+                              backgroundColor:'common.white'
                             }
                           }}
                           className="gtm-select-field"
@@ -277,7 +284,8 @@ const CarsFilter = ({
                           <Select
                             sx={{
                               '& .MuiSelect-select': {
-                                paddingY: 3
+                                paddingY: 3,
+                                backgroundColor:'common.white'
                               }
                             }}
                             className="gtm-select-field"
@@ -314,8 +322,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                          '& .MuiSelect-select': {
-                            paddingY:3
+                           '& .MuiSelect-select': {
+                            paddingY: 3,
+                            backgroundColor:'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -347,8 +356,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                          '& .MuiSelect-select': {
-                            paddingY:3
+                           '& .MuiSelect-select': {
+                            paddingY: 3,
+                            backgroundColor:'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -380,8 +390,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                          '& .MuiSelect-select': {
-                            paddingY:3
+                           '& .MuiSelect-select': {
+                            paddingY: 3,
+                            backgroundColor:'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -413,8 +424,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                          '& .MuiSelect-select': {
-                            paddingY:3
+                           '& .MuiSelect-select': {
+                            paddingY: 3,
+                            backgroundColor:'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -447,8 +459,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                          '& .MuiSelect-select': {
-                            paddingY:3
+                           '& .MuiSelect-select': {
+                            paddingY: 3,
+                            backgroundColor:'common.white',
                           }
                         }}
                         className="gtm-select-field"
@@ -480,8 +493,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                          '& .MuiSelect-select': {
-                            paddingY:3
+                           '& .MuiSelect-select': {
+                            paddingY: 3,
+                            backgroundColor:'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -513,8 +527,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                          '& .MuiSelect-select': {
-                            paddingY:3
+                           '& .MuiSelect-select': {
+                            paddingY: 3,
+                            backgroundColor:'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -546,8 +561,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                          '& .MuiSelect-select': {
-                            paddingY:3
+                           '& .MuiSelect-select': {
+                            paddingY: 3,
+                            backgroundColor:'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -580,8 +596,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                          '& .MuiSelect-select': {
-                            paddingY:3
+                           '& .MuiSelect-select': {
+                            paddingY: 3,
+                            backgroundColor:'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -617,8 +634,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                          '& .MuiSelect-select': {
-                            paddingY:3
+                           '& .MuiSelect-select': {
+                            paddingY: 3,
+                            backgroundColor:'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -651,8 +669,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                          '& .MuiSelect-select': {
-                            paddingY:3
+                           '& .MuiSelect-select': {
+                            paddingY: 3,
+                            backgroundColor:'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -684,8 +703,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                          '& .MuiSelect-select': {
-                            paddingY:3
+                           '& .MuiSelect-select': {
+                            paddingY: 3,
+                            backgroundColor:'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -718,8 +738,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                          '& .MuiSelect-select': {
-                            paddingY:3
+                           '& .MuiSelect-select': {
+                            paddingY: 3,
+                            backgroundColor:'common.white'
                           }
                         }}
 
