@@ -11,7 +11,7 @@ export default function Select() {
 
       styleOverrides: {
         root: {
-          height: 40
+          height: 80
         }
       }
     }

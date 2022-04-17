@@ -1,4 +1,4 @@
-const inputHeight = 56;
+const inputHeight = 80;
 
 export default function TextField(theme) {
   return {

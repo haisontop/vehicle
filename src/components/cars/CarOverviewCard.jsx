@@ -19,7 +19,7 @@ import { TransmissionTypeIcon } from "../icons/TransmissionTypeIcon";
 import { ClipboardIcon } from "../icons/ClipboardIcon";
 import { FuelTypeIcon } from "../icons/FuelTypeIcon";
 import { DealerIcon } from "../icons/DealerIcon";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useTheme } from "@emotion/react";
 import {
   getPriceIndicatorColor,
@@ -57,11 +57,23 @@ const CarOverviewCard = ({ details, handleClickCard }) => {
 
   return (
     <Card
-      sx={{ height: "100%", p: 0, borderRadius: 1,position:'relative' }}
+      sx={{ height: "100%", p: 0, borderRadius: 1, position: "relative" }}
       className="car-details-card"
     >
-      <IconButton  sx={{position:'absolute',zIndex:20, top:'1rem', right:'1rem',bgcolor:'primary.main',color:'white'}}>
-        <FavoriteBorderIcon/>
+      <IconButton
+        sx={{
+          position: "absolute",
+          zIndex: 20,
+          top: "1rem",
+          right: "1rem",
+          bgcolor: "primary.main",
+          color: "white",
+          "&:hover": {
+            backgroundColor: "primary.lighter",
+          },
+        }}
+      >
+        <FavoriteBorderIcon />
       </IconButton>
       <CardActionArea
         onClick={() => handleClickCard(metadata.stockId)}
@@ -94,9 +106,8 @@ const CarOverviewCard = ({ details, handleClickCard }) => {
             }}
           />
         )}
-        <CardContent sx={{ p:2, flexGrow: 1 }}>
+        <CardContent sx={{ p: 2, flexGrow: 1 }}>
           <Grid container spacing={1} height="100%">
-           
             <Grid item xs={12}>
               <Stack
                 direction="row"
@@ -107,7 +118,7 @@ const CarOverviewCard = ({ details, handleClickCard }) => {
                   <Typography
                     variant="h4"
                     color="primary"
-                    sx={{ fontWeight: 400, lineHeight: 1.2 }}
+                    sx={{ fontWeight: 700, lineHeight: 1.2 }}
                   >
                     {parseInt(forecourtPrice.amountGBP)
                       .toLocaleString("en-US", {
@@ -147,20 +158,33 @@ const CarOverviewCard = ({ details, handleClickCard }) => {
             </Grid>
 
             <Grid item xs={12}>
-              <Box
-                display="column"
-                alignItems="start"
-              >
-                <Typography variant="h4" sx={{ lineHeight: 1.2 }}>
+              <Box display="column" alignItems="start">
+                <Typography
+                  variant="h4"
+                  sx={{ lineHeight: 1.2, fontWeight: 700 }}
+                >
                   {vehicle.make} {vehicle.model}
                 </Typography>
               </Box>
             </Grid>
-            <Grid item xs={12} minHeight="54px">
-              <Box display="flex" direction="row" gap={0.5} flexWrap="wrap">
+            <Grid
+              item
+              xs={12}
+              minHeight="54px"
+              display="flex"
+              alignItems={"flex-end"}
+              flexGrow={1}
+            >
+              <Box
+                display="flex"
+                direction="row"
+                gap={0.5}
+                flexWrap="wrap"
+                alignItems="center"
+              >
                 <Stack direction="row" spacing={0.6} alignItems="center">
                   <TransmissionTypeIcon />
-                  <Typography variant="body1" whiteSpace="nowrap">
+                  <Typography variant="caption" whiteSpace="nowrap">
                     {vehicle.odometerReadingMiles} miles
                   </Typography>
                 </Stack>
@@ -174,7 +198,7 @@ const CarOverviewCard = ({ details, handleClickCard }) => {
                     my: 0.5,
                   }}
                 />
-                <Typography variant="body1" whiteSpace="nowrap">
+                <Typography variant="caption" whiteSpace="nowrap">
                   {vehicle.transmissionType}
                 </Typography>
                 <Divider
@@ -186,7 +210,7 @@ const CarOverviewCard = ({ details, handleClickCard }) => {
                     my: 0.5,
                   }}
                 />
-                <Typography variant="body1" whiteSpace="nowrap">
+                <Typography variant="caption" whiteSpace="nowrap">
                   {vehicle.fuelType}
                 </Typography>
                 {vehicle.emissionClass && (
@@ -200,7 +224,7 @@ const CarOverviewCard = ({ details, handleClickCard }) => {
                         my: 0.5,
                       }}
                     />
-                    <Typography variant="body1" whiteSpace="nowrap">
+                    <Typography variant="caption" whiteSpace="nowrap">
                       ULEZ
                     </Typography>
                   </>
@@ -210,9 +234,9 @@ const CarOverviewCard = ({ details, handleClickCard }) => {
 
             {isAgent && (
               <Grid item xs={12}>
-                <Stack direction="row" spacing={0.6} alignItems="start">
+                <Stack direction="row" spacing={0.6} alignItems="center">
                   <DealerIcon />
-                  <Typography variant="body1">
+                  <Typography variant="caption">
                     {advertiser.name}: {advertiser.phone}
                   </Typography>
                 </Stack>
