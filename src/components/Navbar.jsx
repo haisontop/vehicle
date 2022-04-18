@@ -25,6 +25,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from '@mui/icons-material/Search';
 import { useSearchSettings } from "../hooks";
+import { SearchContext } from "../contexts/SearchContext";
 import {
   cleanSearchParams,
   decryption,
@@ -55,7 +56,7 @@ export const Navbar = (props) => {
   const handleCloseMobileMenu = () => {
     setAnchorEl(null);
   };
-
+  const { userId, onChangeCookieEnabled } = React.useContext(SearchContext);
   const [open, setOpen] = React.useState(false);
 
   const [currentAddress, setCurrentAddress] =
@@ -124,6 +125,14 @@ export const Navbar = (props) => {
     const filteredParams = cleanSearchParams({
       ...router.query,
     });
+
+    const newUserId = Math.floor(Math.random() * 10000);
+
+    if (newUserId.toString() !== userId) {
+      onChangeCookieEnabled(undefined)
+    }
+    router.push({ query: { ...router.query, user: newUserId } })
+
 
     router.push({
       pathname: "/favorites",
