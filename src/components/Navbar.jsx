@@ -131,7 +131,6 @@ export const Navbar = (props) => {
     if (newUserId.toString() !== userId) {
       onChangeCookieEnabled(undefined)
     }
-    router.push({ query: { ...router.query, user: newUserId } })
 
 
     router.push({
