@@ -9,19 +9,19 @@ import CarOverviewCard from "./CarOverviewCard";
 const CarsList = ({ cars, loading, handleClickCard }) => {
 
 
-  const { userId,onChangeCookieEnabled } = useContext(SearchContext);
+  const { userId, onChangeCookieEnabled } = useContext(SearchContext);
 
   const router = useRouter();
 
   const handleFavorit = async (details) => {
-    const newUserId = Math.floor(Math.random()*10000);
-   
+    const newUserId = Math.floor(Math.random() * 10000);
+
     if (newUserId.toString() !== userId) {
       onChangeCookieEnabled(undefined)
     }
-    router.push({ query: { user:newUserId } })
-    
-    
+    router.push({ query: { ...router.query, user: newUserId } })
+
+
     if (userId) {
       try {
         const fetchResult = await axios.post(
