@@ -14,9 +14,9 @@ const CarsList = ({ cars, loading, handleClickCard }) => {
   const router = useRouter();
 
   const handleFavorit = async (details) => {
-    const newUserId =  Math.floor(Math.random()*10000);
+    const newUserId = Math.floor(Math.random()*10000);
    
-    if (newUserId !== userId) {
+    if (newUserId.toString() !== userId) {
       onChangeCookieEnabled(undefined)
     }
     router.push({ query: { user:newUserId } })

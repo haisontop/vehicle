@@ -61,7 +61,7 @@ const CarDetails = ({ details, handleClickBack }) => {
 
   const { forecourtPrice } = adverts;
 
-  const { userId } = useContext(SearchContext);
+  const { userId ,onChangeCookieEnabled} = useContext(SearchContext);
 
   const [features, setFeatures] = React.useState([]);
   const [saved, setSaved] = React.useState(false);
@@ -153,6 +153,12 @@ const CarDetails = ({ details, handleClickBack }) => {
         event: "save_favorites_click",
       },
     });
+    const newUserId = Math.floor(Math.random()*10000);
+   
+    if (newUserId.toString() !== userId) {
+      onChangeCookieEnabled(undefined)
+    }
+    router.push({ query: {...router.query, user:newUserId } })
     if (userId) {
       try {
         const fetchResult = await axios.post(
