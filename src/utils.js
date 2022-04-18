@@ -32,6 +32,7 @@ export function encryption(value) {
   return Buffer.from(value).toString("base64");
 }
 
+
 export function decryption(value) {
   return Buffer.from(value, "base64").toString();
 }
