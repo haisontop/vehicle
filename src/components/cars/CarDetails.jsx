@@ -139,12 +139,12 @@ const CarDetails = ({ details, handleClickBack }) => {
         ) {
           setFeatures(fetchResult.data.data);
         }
-      } catch (error) {}
+      } catch (error) { }
     }
 
     fetchData();
 
-    return () => {};
+    return () => { };
   }, [searchId]);
 
   const handleClickSave = async () => {
@@ -227,226 +227,184 @@ const CarDetails = ({ details, handleClickBack }) => {
             )}
           </Box>
         </Grid>
-        <Grid item xs={12} sm={5} md={5}>
+        <Grid item xs={12} md={6}>
           <ImageGallery items={images} />
-          <Box mt={2}>
-            <List>
-              <Divider />
-              <ListItem disablePadding>
-                <ListItemButton onClick={handleOpenSpecification}>
-                  <ListItemIcon>
-                    <WheelIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Specifications" />
-                  <ListItemIcon>
-                    <ChevronRightIcon />
-                  </ListItemIcon>
-                </ListItemButton>
-              </ListItem>
-              <Divider />
-              <ListItem disablePadding>
-                <ListItemButton onClick={handleOpenRunningCost}>
-                  <ListItemIcon>
-                    <CalculatorIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Running costs" />
-                  <ListItemIcon>
-                    <ChevronRightIcon />
-                  </ListItemIcon>
-                </ListItemButton>
-              </ListItem>
-              <Divider />
-            </List>
-          </Box>
-        </Grid>
-        <Grid item xs={12} sm={4} md={3}>
-          <Grid container spacing={1}>
-            <Grid item xs={12}>
-              <Box display="column" alignItems="start">
-                <Typography variant="h3" sx={{ lineHeight: 1.2 }}>
-                  {vehicle.make} {vehicle.model}
-                </Typography>
-                <Box
-                  height="2px"
-                  width="50px"
-                  mt={0.5}
-                  sx={{
-                    backgroundImage:
-                      "linear-gradient(270deg, #54EFB6, #03A9F4)",
-                  }}
-                />
-              </Box>
-            </Grid>
-            <Grid item xs={12} mt={1}>
-              <Stack
-                direction="row"
-                justifyContent="space-between"
-                spacing={0.5}
-              >
-                <Box display="flex">
-                  <Typography
-                    variant="h4"
-                    color="primary"
-                    sx={{ fontWeight: 400, lineHeight: 1.2 }}
-                  >
-                    {parseInt(forecourtPrice.amountGBP)
-                      .toLocaleString("en-US", {
-                        currency: "GBP",
-                        style: "currency",
-                      })
-                      .slice(0, -3)}
-                  </Typography>
-                </Box>
-                {adverts &&
-                  adverts.retailAdverts &&
-                  adverts.retailAdverts.priceIndicatorRating &&
-                  adverts.retailAdverts.priceIndicatorRating !==
-                    "NOANALYSIS" && (
-                    <Chip
-                      label={getPriceIndicatorLabel(
-                        adverts.retailAdverts.priceIndicatorRating
-                      )}
-                      size="small"
-                      sx={{
-                        backgroundColor: getPriceIndicatorColor(
-                          adverts.retailAdverts.priceIndicatorRating
-                        ),
-                        color: getPriceIndicatorLabelColor(
-                          adverts.retailAdverts.priceIndicatorRating
-                        ),
-                        textTransform: "capitalize",
-                        borderRadius: "3px",
-                        fontSize: "0.85em",
-                        fontWeight: 600,
-                        p: "4px",
-                        lineHeight: 1.33,
-                      }}
-                    />
-                  )}
-              </Stack>
-            </Grid>
-            <Grid item xs={12} minHeight="54px">
-              <Box display="flex" direction="row" gap={0.5} flexWrap="wrap">
-                <Stack direction="row" spacing={0.6} alignItems="center">
-                  <TransmissionTypeIcon />
-                  <Typography variant="body1" whiteSpace="nowrap">
-                    {vehicle.odometerReadingMiles} miles
-                  </Typography>
-                </Stack>
-                <Divider
-                  orientation="vertical"
-                  variant="middle"
-                  flexItem
-                  sx={{
-                    borderRightWidth: 2,
-                    borderColor: "rgba(35, 35, 35, 1)",
-                    my: 0.5,
-                  }}
-                />
-                <Typography variant="body1" whiteSpace="nowrap">
-                  {vehicle.transmissionType}
-                </Typography>
-                <Divider
-                  orientation="vertical"
-                  flexItem
-                  sx={{
-                    borderRightWidth: 2,
-                    borderColor: "rgba(35, 35, 35, 1)",
-                    my: 0.5,
-                  }}
-                />
-                <Typography variant="body1" whiteSpace="nowrap">
-                  {vehicle.fuelType}
-                </Typography>
-                {vehicle.emissionClass && (
-                  <>
-                    <Divider
-                      orientation="vertical"
-                      flexItem
-                      sx={{
-                        borderRightWidth: 2,
-                        borderColor: "rgba(35, 35, 35, 1)",
-                        my: 0.5,
-                      }}
-                    />
-                    <Typography variant="body1" whiteSpace="nowrap">
-                      ULEZ
-                    </Typography>
-                  </>
-                )}
-              </Box>
-            </Grid>
 
-            {isAgent && (
-              <Grid item xs={12} sm={12}>
-                <Stack
-                  direction="row"
-                  spacing={0.6}
-                  alignItems="center"
-                  width="100%"
-                >
-                  <DealerIcon />
-                  <Typography>{advertiser.name}: </Typography>
-                  <Typography>{advertiser.phone}</Typography>
-                </Stack>
-              </Grid>
-            )}
-            {(vehicle.make === "Toyota" || vehicle.make === "Lexus") && (
-              <Grid item xs={12}>
-                <Box
-                  position="relative"
-                  bgcolor={"#F8F8F8"}
-                  borderRadius={"8px"}
-                  px="19px"
-                  pt="49px"
-                  pb="24px"
-                >
-                  <CardMedia
-                    component="img"
-                    height="68px"
-                    image="/images/toyota-warranty-icon.png"
-                    alt="Media"
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Card  sx={{ p:3,display:'flex', flexDirection:'column',bgcolor:'common.white', gap: 3 }}>
+            <Box display="column" alignItems="start">
+              <Typography variant="h3" sx={{ lineHeight: 1.2 }}>
+                {vehicle.make} {vehicle.model}
+              </Typography>
+              <Box
+                height="2px"
+                width="50px"
+                mt={0.5}
+                sx={{
+                  backgroundImage:
+                    "linear-gradient(270deg, #54EFB6, #03A9F4)",
+                }}
+              />
+            </Box>
+            <Box
+              display="flex"
+              alignItems={'center'}
+              justifyContent="space-between"
+              spacing={0.5}
+            >
+              <Typography
+                variant="h3"
+                color="primary"
+                sx={{ fontWeight: 600, lineHeight: 1.2 }}
+              >
+                {parseInt(forecourtPrice.amountGBP)
+                  .toLocaleString("en-US", {
+                    currency: "GBP",
+                    style: "currency",
+                  })
+                  .slice(0, -3)}
+              </Typography>
+              {adverts &&
+                adverts.retailAdverts &&
+                adverts.retailAdverts.priceIndicatorRating &&
+                adverts.retailAdverts.priceIndicatorRating !==
+                "NOANALYSIS" && (
+                  <Chip
+                    label={getPriceIndicatorLabel(
+                      adverts.retailAdverts.priceIndicatorRating
+                    )}
+                    size="small"
                     sx={{
-                      position: "absolute",
-                      top: "-20px",
-                      left: "15px",
-                      width: "56px",
+                      backgroundColor: getPriceIndicatorColor(
+                        adverts.retailAdverts.priceIndicatorRating
+                      ),
+                      color: getPriceIndicatorLabelColor(
+                        adverts.retailAdverts.priceIndicatorRating
+                      ),
+                      textTransform: "capitalize",
+                      borderRadius: "3px",
+                      fontSize: "0.85em",
+                      fontWeight: 600,
+                      p: 0.5,
+                      lineHeight: 1.33,
                     }}
                   />
-                  <Typography
-                    variant="body1"
-                    fontWeight={700}
-                    lineHeight={"18.75px"}
-                  >
-                    Up to 10 years (100,000 mile) Toyota warranty - With Toyota
-                    Relax
+                )}
+            </Box>
+            <Box display="flex" direction="row" gap={0.5} flexWrap="wrap">
+              <Stack direction="row" spacing={0.6} alignItems="center">
+                <TransmissionTypeIcon />
+                <Typography variant="body1" whiteSpace="nowrap">
+                  {vehicle.odometerReadingMiles} miles
+                </Typography>
+              </Stack>
+              <Divider
+                orientation="vertical"
+                variant="middle"
+                flexItem
+                sx={{
+                  borderRightWidth: 2,
+                  borderColor: "rgba(35, 35, 35, 1)",
+                  my: 0.5,
+                }}
+              />
+              <Typography variant="body1" whiteSpace="nowrap">
+                {vehicle.transmissionType}
+              </Typography>
+              <Divider
+                orientation="vertical"
+                flexItem
+                sx={{
+                  borderRightWidth: 2,
+                  borderColor: "rgba(35, 35, 35, 1)",
+                  my: 0.5,
+                }}
+              />
+              <Typography variant="body1" whiteSpace="nowrap">
+                {vehicle.fuelType}
+              </Typography>
+              {vehicle.emissionClass && (
+                <>
+                  <Divider
+                    orientation="vertical"
+                    flexItem
+                    sx={{
+                      borderRightWidth: 2,
+                      borderColor: "rgba(35, 35, 35, 1)",
+                      my: 0.5,
+                    }}
+                  />
+                  <Typography variant="body1" whiteSpace="nowrap">
+                    ULEZ
                   </Typography>
-                  <Typography variant="body1" lineHeight={"22px"} mt={1.5}>
-                    Every new and used Toyota, is eligible to be covered by up
-                    to 10 years’ manufacturer warranty through Toyota Relax.
-                    This is provided through an initial 3 years manufacturer
-                    warranty from the vehicle’s registration date that can be
-                    extended with regular servicing at a Toyota dealer. 12
-                    months warranty is included with every Toyota Service, up to
-                    100,000 miles or 10 years, whichever comes first, giving you
-                    a chance to relax in the knowledge that you and your vehicle
-                    are in safe hands.
-                    <Link
-                      href="https://www.toyota.co.uk/owners/warranty/toyota-warranty"
-                      underline="none"
-                      target="_blank"
-                    >
-                      Terms and conditions apply.
-                    </Link>
-                  </Typography>
-                </Box>
-              </Grid>
+                </>
+              )}
+            </Box>
+
+            {isAgent && (
+              <Stack
+                direction="row"
+                spacing={0.6}
+                alignItems="center"
+                width="100%"
+              >
+                <DealerIcon />
+                <Typography>{advertiser.name}: </Typography>
+                <Typography>{advertiser.phone}</Typography>
+              </Stack>
             )}
-          </Grid>
-        </Grid>
-        <Grid item xs={12} sm={3} md={4} display={{ xs: "none", sm: "block" }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={12} md={6}>
+            {(vehicle.make === "Toyota" || vehicle.make === "Lexus") && (
+              <Box
+                position="relative"
+                bgcolor={"#F8F8F8"}
+                borderRadius={"8px"}
+                px="19px"
+                pt="49px"
+                pb="24px"
+              >
+                <CardMedia
+                  component="img"
+                  height="68px"
+                  image="/images/toyota-warranty-icon.png"
+                  alt="Media"
+                  sx={{
+                    position: "absolute",
+                    top: "-20px",
+                    left: "15px",
+                    width: "56px",
+                  }}
+                />
+                <Typography
+                  variant="body1"
+                  fontWeight={700}
+                  lineHeight={"18.75px"}
+                >
+                  Up to 10 years (100,000 mile) Toyota warranty - With Toyota
+                  Relax
+                </Typography>
+                <Typography variant="body1" lineHeight={"22px"} mt={1.5}>
+                  Every new and used Toyota, is eligible to be covered by up
+                  to 10 years’ manufacturer warranty through Toyota Relax.
+                  This is provided through an initial 3 years manufacturer
+                  warranty from the vehicle’s registration date that can be
+                  extended with regular servicing at a Toyota dealer. 12
+                  months warranty is included with every Toyota Service, up to
+                  100,000 miles or 10 years, whichever comes first, giving you
+                  a chance to relax in the knowledge that you and your vehicle
+                  are in safe hands.
+                  <Link
+                    href="https://www.toyota.co.uk/owners/warranty/toyota-warranty"
+                    underline="none"
+                    target="_blank"
+                  >
+                    Terms and conditions apply.
+                  </Link>
+                </Typography>
+              </Box>
+            )}
+
+            <Box gap={3} display={{ xs: "none", sm: "flex" }}>
               {isFavorite ? (
                 <Button
                   variant="contained"
@@ -469,9 +427,7 @@ const CarDetails = ({ details, handleClickBack }) => {
                   {saved ? "Saved" : "Save"}
                 </Button>
               )}
-            </Grid>
-            {!isAgent && (
-              <Grid item xs={12} sm={12} md={6}>
+              {!isAgent && (
                 <Button
                   variant="contained"
                   color="primary"
@@ -481,9 +437,39 @@ const CarDetails = ({ details, handleClickBack }) => {
                 >
                   Call Agent
                 </Button>
-              </Grid>
-            )}
-          </Grid>
+              )}
+            </Box>
+            <Box mt={2}>
+              <List>
+                <Divider />
+                <ListItem disablePadding>
+                  <ListItemButton onClick={handleOpenSpecification}>
+                    <ListItemIcon>
+                      <WheelIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Specifications" />
+                    <ListItemIcon>
+                      <ChevronRightIcon />
+                    </ListItemIcon>
+                  </ListItemButton>
+                </ListItem>
+                <Divider />
+                <ListItem disablePadding>
+                  <ListItemButton onClick={handleOpenRunningCost}>
+                    <ListItemIcon>
+                      <CalculatorIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Running costs" />
+                    <ListItemIcon>
+                      <ChevronRightIcon />
+                    </ListItemIcon>
+                  </ListItemButton>
+                </ListItem>
+                <Divider />
+              </List>
+            </Box>
+
+          </Card>
         </Grid>
       </Grid>
 
@@ -536,9 +522,8 @@ const CarDetails = ({ details, handleClickBack }) => {
                   color="primary"
                   fullWidth
                   id="call-agent-button"
-                  href={`tel:${
-                    agentAddress ? agentAddress : DEFAULT_PHONE_NUMBER
-                  }`}
+                  href={`tel:${agentAddress ? agentAddress : DEFAULT_PHONE_NUMBER
+                    }`}
                 >
                   Call Agent
                 </Button>

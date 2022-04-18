@@ -10,6 +10,7 @@ import {
   DialogContentText,
   DialogTitle,
   IconButton,
+  Input,
   Link,
   Menu,
   MenuItem,
@@ -22,6 +23,7 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import CloseIcon from "@mui/icons-material/Close";
+import SearchIcon from '@mui/icons-material/Search';
 import { useSearchSettings } from "../hooks";
 import {
   cleanSearchParams,
@@ -36,7 +38,7 @@ import { CustomMenuIcon } from "./icons/CustomMenuIcon";
 import TagManager from "react-gtm-module";
 
 const NavbarRoot = styled(AppBar)(({ theme }) => ({
-  backgroundColor: "#23325C",
+  backgroundColor: theme.palette.primary.main,
   boxShadow: theme.shadows[3],
 }));
 
@@ -159,6 +161,8 @@ export const Navbar = (props) => {
             />
           </Box>
 
+          <Box sx={{ flexGrow: 1 }} />
+          <Input startAdornment={<SearchIcon/>} placeholder="Search" sx={{px:3 ,py:0.5, borderRadius:1, display:{xs:'none', sm:'flex'}}}/>
           <Box sx={{ flexGrow: 1 }} />
           {isAgent ? (
             <>
@@ -349,6 +353,7 @@ export const Navbar = (props) => {
           )}
         </Toolbar>
       </NavbarRoot>
+
       <Snackbar
         open={openSnackBar}
         autoHideDuration={6000}
