@@ -62,9 +62,7 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
     return router.query.isAgent === "true";
   }, [router.query]);
 
-  const handlePopover = (e) => {
-    setAnchorEl(e.target);
-  }
+    
   return (
     <Card
       sx={{ height: "100%", p: 0, borderRadius: 1, position: 'relative' }}
@@ -88,7 +86,7 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
         <CardMedia
           component="img"
           sx={{ height: { xs: "158px", sm: "200px", md: "158px" } }}
-          image={mainMediaUrl}
+          image={mainMediaUrl||'/images/car_placeholder.svg'}
           alt="Media"
           onClick={() => handleClickCard(metadata.stockId)}
         />
@@ -152,8 +150,8 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
                     p: "4px",
                     lineHeight: 1.33,
                   }}
-                  onMouseOver={handlePopover}
-                  
+                  onClick={(e)=>setAnchorEl(e.target)}
+                                    
                 />
               )}
             <Popover

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useRouter } from "next/router";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -9,18 +10,22 @@ import TagManager from "react-gtm-module";
 import { SearchContext } from "../contexts/SearchContext";
 
 export default function CookieModal() {
-  const { cookieEnabled, onChangeCookieEnabled } =
+  const { userId, cookieEnabled, onChangeCookieEnabled } =
     React.useContext(SearchContext);
 
   const [open, setOpen] = React.useState(false);
 
+  const router = useRouter();
+  console.log(router.query.user, userId);
+
   React.useEffect(() => {
+   
     if (cookieEnabled === undefined) {
       setOpen(true);
     } else if (open) {
       setOpen(false);
     }
-  }, [cookieEnabled, open, setOpen]);
+  }, [cookieEnabled,  open, setOpen]);
 
   const handleRejectCookie = () => {
     onChangeCookieEnabled(false);
