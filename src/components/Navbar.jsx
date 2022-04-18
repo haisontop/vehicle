@@ -161,8 +161,8 @@ export const Navbar = (props) => {
             />
           </Box>
 
-          <Box sx={{ flexGrow: 1 }} />
-          <Input startAdornment={<SearchIcon/>} placeholder="Search" sx={{px:3 ,py:0.5, borderRadius:1, display:{xs:'none', sm:'flex'}}}/>
+          {/* <Box sx={{ flexGrow: 1 }} />
+          <Input startAdornment={<SearchIcon/>} placeholder="Search" sx={{px:3 ,py:0.5, borderRadius:1, display:{xs:'none', sm:'flex'}}}/> */}
           <Box sx={{ flexGrow: 1 }} />
           {isAgent ? (
             <>

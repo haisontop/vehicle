@@ -152,7 +152,8 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
                     p: "4px",
                     lineHeight: 1.33,
                   }}
-                  onClick={handlePopover}
+                  onMouseOver={handlePopover}
+                  
                 />
               )}
             <Popover
