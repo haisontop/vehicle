@@ -44,7 +44,7 @@ import { CalculatorIcon } from "../icons/CalculatorIcon";
 import SpecificationDialog from "../dialogs/SpecificationDialog";
 import RunningCostDialog from "../dialogs/RunningCostDialog";
 import axios from "axios";
-import { SearchContext } from "../../contexts/SearchContext";
+import { SearchContext,restoreCookieEnabled } from "../../contexts/SearchContext";
 import { ArrowBack } from "@mui/icons-material";
 
 export const DEFAULT_PHONE_NUMBER = "00442030059330";
@@ -62,6 +62,8 @@ const CarDetails = ({ details, handleClickBack }) => {
   const { forecourtPrice } = adverts;
 
   const { userId ,onChangeCookieEnabled} = useContext(SearchContext);
+
+  const cookieEnabled =restoreCookieEnabled();
 
   const [features, setFeatures] = React.useState([]);
   const [saved, setSaved] = React.useState(false);
@@ -153,12 +155,10 @@ const CarDetails = ({ details, handleClickBack }) => {
         event: "save_favorites_click",
       },
     });
-    const newUserId = Math.floor(Math.random()*10000);
-   
-    if (newUserId.toString() !== userId) {
+    if (cookieEnabled===null||cookieEnabled==="false") {
       onChangeCookieEnabled(undefined)
     }
-    router.push({ query: {...router.query, user:newUserId } })
+    router.push({ query: {...router.query, user:userId } })
     if (userId) {
       try {
         const fetchResult = await axios.post(

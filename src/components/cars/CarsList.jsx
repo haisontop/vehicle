@@ -3,25 +3,25 @@ import { Box } from "@mui/system";
 import React, { useContext } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { SearchContext } from "../../contexts/SearchContext";
+import { SearchContext,restoreCookieEnabled } from "../../contexts/SearchContext";
 import CarOverviewCard from "./CarOverviewCard";
 
 const CarsList = ({ cars, loading, handleClickCard }) => {
 
+  const cookieEnabled =restoreCookieEnabled();
 
-  const { userId, onChangeCookieEnabled } = useContext(SearchContext);
+  const { userId,onChangeCookieEnabled } = useContext(SearchContext);
 
   const router = useRouter();
 
   const handleFavorit = async (details) => {
-    const newUserId = Math.floor(Math.random() * 10000);
-
-    if (newUserId.toString() !== userId) {
+   
+    if (cookieEnabled===null||cookieEnabled==="false") {
       onChangeCookieEnabled(undefined)
     }
-    router.push({ query: { ...router.query, user: newUserId } })
-
-
+    router.push({ query: {...router.query, user:userId } })
+    
+    
     if (userId) {
       try {
         const fetchResult = await axios.post(
