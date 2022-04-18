@@ -131,9 +131,6 @@ const CarsFilter = ({
     });
   };
 
-
-
-
   const renderSelectValue = (value) => {
     return value.replace(/(.*?)/, "");
   };
@@ -183,8 +180,6 @@ const CarsFilter = ({
                           handleChange(event);
                         }}
                         fullWidth
-                        sx={{'& .MuiInputBase-root':{paddingY:4.5,borderRadius:1}}}
-                       
                       ></TextField>
                     )}
                   </Field>
@@ -193,7 +188,6 @@ const CarsFilter = ({
                   <Field name="distance">
                     {({ field, form }) => (
                       <Select
-
                         placeholder="National"
                         fullWidth
                         {...field}
@@ -208,10 +202,10 @@ const CarsFilter = ({
                         }}
                         className="gtm-select-field"
                         sx={{
-                           '& .MuiSelect-select': {
+                          "& .MuiSelect-select": {
                             paddingY: 3,
-                            backgroundColor:'common.white'
-                          }
+                            backgroundColor: "common.white",
+                          },
                         }}
                       >
                         {NATIONAL_OPTIONS.map((option) => (
@@ -228,11 +222,11 @@ const CarsFilter = ({
                     {({ field, form }) => {
                       return (
                         <Select
+                          size="large"
                           sx={{
-                            '& .MuiSelect-select': {
+                            "& .MuiSelect-select": {
                               paddingY: 3,
-                              backgroundColor:'common.white'
-                            }
+                            },
                           }}
                           className="gtm-select-field"
                           placeholder="Make"
@@ -274,19 +268,19 @@ const CarsFilter = ({
                       const currentModelOptions =
                         currentModelTarget && currentModelTarget.options
                           ? currentModelTarget.options.map((option) => ({
-                            value: option.value,
-                            label: option.value,
-                          }))
+                              value: option.value,
+                              label: option.value,
+                            }))
                           : [];
 
                       return (
                         <FormControl disabled={!values.standardMake} fullWidth>
                           <Select
                             sx={{
-                              '& .MuiSelect-select': {
+                              "& .MuiSelect-select": {
                                 paddingY: 3,
-                                backgroundColor:'common.white'
-                              }
+                                backgroundColor: "common.white",
+                              },
                             }}
                             className="gtm-select-field"
                             placeholder="Model"
@@ -322,10 +316,10 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          "& .MuiSelect-select": {
                             paddingY: 3,
-                            backgroundColor:'common.white'
-                          }
+                            backgroundColor: "common.white",
+                          },
                         }}
                         className="gtm-select-field"
                         placeholder="Min Price"
@@ -356,10 +350,10 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          "& .MuiSelect-select": {
                             paddingY: 3,
-                            backgroundColor:'common.white'
-                          }
+                            backgroundColor: "common.white",
+                          },
                         }}
                         className="gtm-select-field"
                         placeholder="Max Price"
@@ -390,10 +384,10 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          "& .MuiSelect-select": {
                             paddingY: 3,
-                            backgroundColor:'common.white'
-                          }
+                            backgroundColor: "common.white",
+                          },
                         }}
                         className="gtm-select-field"
                         placeholder="Min Mileage"
@@ -424,10 +418,10 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          "& .MuiSelect-select": {
                             paddingY: 3,
-                            backgroundColor:'common.white'
-                          }
+                            backgroundColor: "common.white",
+                          },
                         }}
                         className="gtm-select-field"
                         placeholder="Max Mileage"
@@ -459,10 +453,10 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          "& .MuiSelect-select": {
                             paddingY: 3,
-                            backgroundColor:'common.white',
-                          }
+                            backgroundColor: "common.white",
+                          },
                         }}
                         className="gtm-select-field"
                         placeholder="Min Year"
@@ -493,10 +487,10 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          "& .MuiSelect-select": {
                             paddingY: 3,
-                            backgroundColor:'common.white'
-                          }
+                            backgroundColor: "common.white",
+                          },
                         }}
                         className="gtm-select-field"
                         placeholder="Max Year"
@@ -527,10 +521,10 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          "& .MuiSelect-select": {
                             paddingY: 3,
-                            backgroundColor:'common.white'
-                          }
+                            backgroundColor: "common.white",
+                          },
                         }}
                         className="gtm-select-field"
                         placeholder="Fuel Type"
@@ -561,10 +555,10 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          "& .MuiSelect-select": {
                             paddingY: 3,
-                            backgroundColor:'common.white'
-                          }
+                            backgroundColor: "common.white",
+                          },
                         }}
                         className="gtm-select-field"
                         placeholder="Gearbox"
@@ -596,10 +590,10 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          "& .MuiSelect-select": {
                             paddingY: 3,
-                            backgroundColor:'common.white'
-                          }
+                            backgroundColor: "common.white",
+                          },
                         }}
                         className="gtm-select-field"
                         placeholder="Body Type"
@@ -634,10 +628,10 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          "& .MuiSelect-select": {
                             paddingY: 3,
-                            backgroundColor:'common.white'
-                          }
+                            backgroundColor: "common.white",
+                          },
                         }}
                         className="gtm-select-field"
                         placeholder="Doors"
@@ -669,10 +663,10 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          "& .MuiSelect-select": {
                             paddingY: 3,
-                            backgroundColor:'common.white'
-                          }
+                            backgroundColor: "common.white",
+                          },
                         }}
                         className="gtm-select-field"
                         placeholder="Min Seats"
@@ -703,10 +697,10 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          "& .MuiSelect-select": {
                             paddingY: 3,
-                            backgroundColor:'common.white'
-                          }
+                            backgroundColor: "common.white",
+                          },
                         }}
                         className="gtm-select-field"
                         placeholder="Max Seats"
@@ -738,12 +732,11 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          "& .MuiSelect-select": {
                             paddingY: 3,
-                            backgroundColor:'common.white'
-                          }
+                            backgroundColor: "common.white",
+                          },
                         }}
-
                         className="gtm-select-field"
                         placeholder="Color"
                         fullWidth
@@ -802,7 +795,11 @@ const CarsFilter = ({
                     display: { xs: "none", sm: "block" },
                   }}
                 >
-                  <Stack direction={'row'} spacing={2} justifyContent={'space-between'}>
+                  <Stack
+                    direction={"row"}
+                    spacing={2}
+                    justifyContent={"space-between"}
+                  >
                     <Box flexGrow={1}>
                       <LoadingButton
                         type="submit"
@@ -812,7 +809,6 @@ const CarsFilter = ({
                         fullWidth
                         loading={loading}
                         sx={{
-
                           paddingY: 3,
                           borderRadius: 5,
                         }}
@@ -828,12 +824,18 @@ const CarsFilter = ({
                     <IconButton
                       size="large"
                       onClick={() => handleResetFilter(resetForm)}
-                      sx={{ backgroundColor: 'primary.lighter', '&:hover': { backgroundColer: 'primary.light' } }}
+                      sx={{
+                        color: "#23325C",
+                        backgroundColor: "#C2C5CD",
+                        "&:hover": {
+                          backgroundColor: "primary.main",
+                          color: "#fff",
+                        },
+                      }}
                     >
-                      <CloseIcon />
+                      <CloseIcon sx={{}} />
                     </IconButton>
                   </Stack>
-
                 </Grid>
                 <Paper
                   sx={{
