@@ -25,7 +25,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import CloseIcon from "@mui/icons-material/Close";
 import SearchIcon from '@mui/icons-material/Search';
 import { useSearchSettings } from "../hooks";
-import { SearchContext } from "../contexts/SearchContext";
+import { SearchContext, restoreCookieEnabled } from "../contexts/SearchContext";
 import {
   cleanSearchParams,
   decryption,
@@ -47,7 +47,7 @@ export const Navbar = (props) => {
   const router = useRouter();
   const { isAgent } = router.query;
   const { onSidebarOpen, ...other } = props;
-
+  const cookieEnabled = restoreCookieEnabled();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const mobileMenuOpen = Boolean(anchorEl);
   const handleClickMobileMenu = (event) => {
@@ -116,6 +116,7 @@ export const Navbar = (props) => {
     );
   }, [baseURL, router.asPath, currentAddress]);
 
+
   const handleClickFavorites = () => {
     TagManager.dataLayer({
       dataLayer: {
@@ -126,17 +127,15 @@ export const Navbar = (props) => {
       ...router.query,
     });
 
-    const newUserId = Math.floor(Math.random() * 10000);
-
-    if (newUserId.toString() !== userId) {
+    if (cookieEnabled===null||cookieEnabled==="false") {
       onChangeCookieEnabled(undefined)
     }
 
-
-    router.push({
-      pathname: "/favorites",
-      query: filteredParams,
-    });
+    if (cookieEnabled==="true")
+      router.push({
+        pathname: "/favorites",
+        query: filteredParams,
+      });
   };
 
   const handleGoHome = () => {
