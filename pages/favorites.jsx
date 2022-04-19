@@ -26,7 +26,6 @@ export default function DetailsPage({ baseOrigin }) {
   const router = useRouter();
 
   const { userId } = useContext(SearchContext);
-
   const [vehicles, setVehicles] = React.useState([]);
 
   const { isLoading, data, error } = useSWR(() => {

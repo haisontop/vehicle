@@ -44,10 +44,7 @@ import { CalculatorIcon } from "../icons/CalculatorIcon";
 import SpecificationDialog from "../dialogs/SpecificationDialog";
 import RunningCostDialog from "../dialogs/RunningCostDialog";
 import axios from "axios";
-import {
-  SearchContext,
-  restoreCookieEnabled,
-} from "../../contexts/SearchContext";
+import { SearchContext, restoreCookieEnabled } from "../../contexts/SearchContext";
 import { ArrowBack } from "@mui/icons-material";
 
 export const DEFAULT_PHONE_NUMBER = "00442030059330";
@@ -70,6 +67,7 @@ const CarDetails = ({ details, handleClickBack }) => {
 
   const [features, setFeatures] = React.useState([]);
   const [saved, setSaved] = React.useState(false);
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -144,12 +142,12 @@ const CarDetails = ({ details, handleClickBack }) => {
         ) {
           setFeatures(fetchResult.data.data);
         }
-      } catch (error) {}
+      } catch (error) { }
     }
 
     fetchData();
 
-    return () => {};
+    return () => { };
   }, [searchId]);
 
   const handleClickSave = async () => {
@@ -159,9 +157,9 @@ const CarDetails = ({ details, handleClickBack }) => {
       },
     });
     if (cookieEnabled === null || cookieEnabled === "false") {
-      onChangeCookieEnabled(undefined);
+      onChangeCookieEnabled(undefined)
     }
-    router.push({ query: { ...router.query, user: userId } });
+    router.push({ query: { ...router.query, user: userId } })
     if (userId) {
       try {
         const fetchResult = await axios.post(
@@ -238,17 +236,10 @@ const CarDetails = ({ details, handleClickBack }) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <ImageGallery items={images} />
+
         </Grid>
         <Grid item xs={12} md={6}>
-          <Card
-            sx={{
-              p: 3,
-              display: "flex",
-              flexDirection: "column",
-              bgcolor: "common.white",
-              gap: 3,
-            }}
-          >
+          <Card sx={{ p: 3, display: 'flex', flexDirection: 'column', bgcolor: 'common.white', gap: 3 }}>
             <Box display="column" alignItems="start">
               <Typography variant="h3" sx={{ lineHeight: 1.2 }}>
                 {vehicle.make} {vehicle.model}
@@ -258,13 +249,14 @@ const CarDetails = ({ details, handleClickBack }) => {
                 width="50px"
                 mt={0.5}
                 sx={{
-                  backgroundImage: "linear-gradient(270deg, #54EFB6, #03A9F4)",
+                  backgroundImage:
+                    "linear-gradient(270deg, #54EFB6, #03A9F4)",
                 }}
               />
             </Box>
             <Box
               display="flex"
-              alignItems={"center"}
+              alignItems={'center'}
               justifyContent="space-between"
               spacing={0.5}
             >
@@ -283,7 +275,8 @@ const CarDetails = ({ details, handleClickBack }) => {
               {adverts &&
                 adverts.retailAdverts &&
                 adverts.retailAdverts.priceIndicatorRating &&
-                adverts.retailAdverts.priceIndicatorRating !== "NOANALYSIS" && (
+                adverts.retailAdverts.priceIndicatorRating !==
+                "NOANALYSIS" && (
                   <Chip
                     label={getPriceIndicatorLabel(
                       adverts.retailAdverts.priceIndicatorRating
@@ -398,14 +391,15 @@ const CarDetails = ({ details, handleClickBack }) => {
                   Relax
                 </Typography>
                 <Typography variant="body1" lineHeight={"22px"} mt={1.5}>
-                  Every new and used Toyota, is eligible to be covered by up to
-                  10 years’ manufacturer warranty through Toyota Relax. This is
-                  provided through an initial 3 years manufacturer warranty from
-                  the vehicle’s registration date that can be extended with
-                  regular servicing at a Toyota dealer. 12 months warranty is
-                  included with every Toyota Service, up to 100,000 miles or 10
-                  years, whichever comes first, giving you a chance to relax in
-                  the knowledge that you and your vehicle are in safe hands.
+                  Every new and used Toyota, is eligible to be covered by up
+                  to 10 years’ manufacturer warranty through Toyota Relax.
+                  This is provided through an initial 3 years manufacturer
+                  warranty from the vehicle’s registration date that can be
+                  extended with regular servicing at a Toyota dealer. 12
+                  months warranty is included with every Toyota Service, up to
+                  100,000 miles or 10 years, whichever comes first, giving you
+                  a chance to relax in the knowledge that you and your vehicle
+                  are in safe hands.
                   <Link
                     href="https://www.toyota.co.uk/owners/warranty/toyota-warranty"
                     underline="none"
@@ -446,7 +440,6 @@ const CarDetails = ({ details, handleClickBack }) => {
                   color="primary"
                   fullWidth
                   onClick={handleClickOpen}
-                  id="call-agent-button"
                 >
                   Call Agent
                 </Button>
@@ -481,31 +474,34 @@ const CarDetails = ({ details, handleClickBack }) => {
                 <Divider />
               </List>
             </Box>
+
           </Card>
         </Grid>
       </Grid>
+      {open &&
+        <Dialog
+          open={open}
 
-      <Dialog
-        open={open}
-        
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
+          onClose={handleClose}
+          maxWidth="sm"
+          fullWidth
+          aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
-        maxWidth="sm"
-        fullWidth
-      >
-        <DialogTitle id="alert-dialog-title">Call Agent</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Number: {agentAddress ? agentAddress : DEFAULT_PHONE_NUMBER}
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} autoFocus>
-            OK
-          </Button>
-        </DialogActions>
-      </Dialog>
+        >
+          <DialogTitle id="alert-dialog-title">Call Agent</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Number: {agentAddress ? agentAddress : DEFAULT_PHONE_NUMBER}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} autoFocus>
+              OK
+            </Button>
+          </DialogActions>
+        </Dialog>
+      }
+
 
       <Paper
         sx={{
@@ -535,9 +531,8 @@ const CarDetails = ({ details, handleClickBack }) => {
                   color="primary"
                   fullWidth
                   id="call-agent-button"
-                  href={`tel:${
-                    agentAddress ? agentAddress : DEFAULT_PHONE_NUMBER
-                  }`}
+                  href={`tel:${agentAddress ? agentAddress : DEFAULT_PHONE_NUMBER
+                    }`}
                 >
                   Call Agent
                 </Button>

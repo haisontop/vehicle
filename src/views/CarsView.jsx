@@ -424,7 +424,7 @@ const CarsView = () => {
                 havingError={havingError}
               />
             </Grid>
-            <Grid item xs={12} sm={9} md={8} >
+            <Grid item xs={12} sm={9} md={8}>
               <Stack spacing={2}>
                 <CarsList
                   cars={cars}

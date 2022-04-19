@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { createContext, useEffect, useState, useCallback } from "react";
+import { createContext, useEffect, useState } from "react";
 
 const initialState = {
   baseURL: "",
@@ -61,29 +61,23 @@ function SearchProvider({ children }) {
     cookieEnabled: initialState.cookieEnabled,
   });
 
-  const onChangeUserId = useCallback(
-    (userId) => {
-      setSearchSettings((searchSettings) => ({
-        ...searchSettings,
-        userId,
-      }));
+  const onChangeUserId = (userId) => {
+    setSearchSettings({
+      ...searchSettings,
+      userId,
+    });
 
-      storeUserId(userId);
-    },
-    [setSearchSettings]
-  );
+    storeUserId(userId);
+  };
 
-  const onChangeCookieEnabled = useCallback(
-    (cookieEnabled) => {
-      setSearchSettings((searchSettings) => ({
-        ...searchSettings,
-        cookieEnabled,
-      }));
+  const onChangeCookieEnabled = (cookieEnabled) => {
+    setSearchSettings({
+      ...searchSettings,
+      cookieEnabled,
+    });
 
-      storeCookieEnabled(cookieEnabled);
-    },
-    [setSearchSettings]
-  );
+    storeCookieEnabled(cookieEnabled);
+  };
 
   useEffect(() => {
     const userId = restoreUserId();
@@ -91,7 +85,7 @@ function SearchProvider({ children }) {
     if (userId) {
       onChangeUserId(userId);
     }
-  }, [onChangeUserId]);
+  }, []);
 
   useEffect(() => {
     const cookieEnabled = restoreCookieEnabled();
@@ -133,7 +127,7 @@ function SearchProvider({ children }) {
         onChangeAgentAddress,
         onChangeBaseURL,
         onChangeUserId,
-        onChangeCookieEnabled,
+        onChangeCookieEnabled
       }}
     >
       {children}

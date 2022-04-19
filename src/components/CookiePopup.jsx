@@ -10,7 +10,7 @@ import TagManager from "react-gtm-module";
 import { SearchContext } from "../contexts/SearchContext";
 
 export default function CookieModal() {
-  const { userId, cookieEnabled, onChangeCookieEnabled, onChangeUserId } =
+  const { userId, cookieEnabled, onChangeCookieEnabled } =
     React.useContext(SearchContext);
 
   const [open, setOpen] = React.useState(false);
@@ -18,16 +18,16 @@ export default function CookieModal() {
   const router = useRouter();
 
   React.useEffect(() => {
-    console.log("cookieEnabled", cookieEnabled);
-    if (cookieEnabled === "undefined" || cookieEnabled === undefined) {
+   
+    if (cookieEnabled === undefined) {
       setOpen(true);
-    } else {
+    } else if (open) {
       setOpen(false);
     }
-  }, [cookieEnabled, open]);
+  }, [cookieEnabled,  open, setOpen]);
 
   const handleRejectCookie = () => {
-    onChangeCookieEnabled("false");
+    onChangeCookieEnabled(false);
     setOpen(false);
     TagManager.dataLayer({
       dataLayer: {
@@ -36,29 +36,15 @@ export default function CookieModal() {
     });
   };
 
-  const handleAcceptCookie = React.useCallback(() => {
-    if (!userId || router.query.user) {
-      onChangeUserId(router.query.user);
-    }
-
+  const handleAcceptCookie = () => {
+    onChangeCookieEnabled(true);
+    setOpen(false);
     TagManager.dataLayer({
       dataLayer: {
         event: "LocalStorageAcceptYes",
       },
     });
-
-    setOpen(true);
-
-    setTimeout(() => {
-      onChangeCookieEnabled("true");
-    }, 1000);
-  }, [
-    onChangeCookieEnabled,
-    setOpen,
-    onChangeUserId,
-    router.query.user,
-    userId,
-  ]);
+  };
 
   return (
     <div>
@@ -72,8 +58,7 @@ export default function CookieModal() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            We use cookies to save vehicles to your favourites area. Is this ok
-            with you?
+            We use cookies to save vehicles to your favourites area. Is this ok with you?
           </DialogContentText>
         </DialogContent>
         <DialogActions>

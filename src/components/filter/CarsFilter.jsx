@@ -913,24 +913,24 @@ const CarsFilter = ({
   return (
     <>
       <Box display={{ xs: "block", sm: "none" }}>
-        <Box display={'flex'} gap={1} >
+        <Box display={'flex'} gap={1} mb={3}>
           <Input startAdornment={<SearchIcon />} disableUnderline placeholder="Search" sx={{ px: 3, flexGrow: 1, borderRadius: 5, display: 'flex' }} />
           <Button variant="contained" sx={{ borderRadius: 5, paddingY: 3, gap: 1 }} onClick={handleClickOpen}>
             <TuneRoundedIcon />
             Filter
           </Button>
         </Box>
-        <Stack direction="row" spacing={0.5}>
+        <Stack direction="row" spacing={0.5} mb={3}>
           <Button sx={{ bgcolor: 'common.white', borderRadius: 5, paddingY: 3,flexGrow:1,fontSize:9 }}
           onClick={()=>{}}
           >Best SUVs</Button>
-          <Button sx={{ bgcolor: 'common.white', borderRadius: 5, paddingY: 3,flexGrow:1 ,fontSize:9  }}
+          <Button sx={{ bgcolor: 'common.white', borderRadius: 5, paddingY: 3,flexGrow:1,fontSize:9  }}
           onClick={()=>{}}
           >Best Hatchbacks</Button>
-          <Button sx={{ bgcolor: 'common.white', borderRadius: 5, paddingY: 3,flexGrow:1 ,fontSize:9  }}
+          <Button sx={{ bgcolor: 'common.white', borderRadius: 5, paddingY: 3,flexGrow:1,fontSize:9  }}
           onClick={()=>{}}
           >Best Saloons</Button>
-          <Button sx={{ bgcolor: 'common.white', borderRadius: 5, paddingY: 3,flexGrow:1 ,fontSize:9  }}
+          <Button sx={{ bgcolor: 'common.white', borderRadius: 5, paddingY: 3,flexGrow:1,fontSize:9  }}
           onClick={()=>{}}
           >Top Sellers</Button>
         </Stack>

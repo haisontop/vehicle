@@ -23,7 +23,7 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import CloseIcon from "@mui/icons-material/Close";
-
+import SearchIcon from '@mui/icons-material/Search';
 import { useSearchSettings } from "../hooks";
 import { SearchContext, restoreCookieEnabled } from "../contexts/SearchContext";
 import {
@@ -116,6 +116,7 @@ export const Navbar = (props) => {
     );
   }, [baseURL, router.asPath, currentAddress]);
 
+
   const handleClickFavorites = () => {
     TagManager.dataLayer({
       dataLayer: {
@@ -126,9 +127,11 @@ export const Navbar = (props) => {
       ...router.query,
     });
 
-    if (cookieEnabled === null || cookieEnabled === "false") {
-      onChangeCookieEnabled(undefined);
-    } else if (cookieEnabled === "true" || cookieEnabled === true)
+    if (cookieEnabled===null||cookieEnabled==="false") {
+      onChangeCookieEnabled(undefined)
+    }
+
+    if (cookieEnabled==="true")
       router.push({
         pathname: "/favorites",
         query: filteredParams,
@@ -139,7 +142,7 @@ export const Navbar = (props) => {
     const filteredParams = cleanSearchParams({
       ...router.query,
       ...(router.query.id ? { id: null } : null),
-      favorite: null,
+      favorite: null
     });
 
     router.push({
@@ -165,6 +168,8 @@ export const Navbar = (props) => {
             />
           </Box>
 
+          {/* <Box sx={{ flexGrow: 1 }} />
+          <Input startAdornment={<SearchIcon/>} placeholder="Search" sx={{px:3 ,py:0.5, borderRadius:1, display:{xs:'none', sm:'flex'}}}/> */}
           <Box sx={{ flexGrow: 1 }} />
           {isAgent ? (
             <>
