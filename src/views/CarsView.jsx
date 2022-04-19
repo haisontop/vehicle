@@ -375,7 +375,7 @@ const CarsView = () => {
               <>
                 <Grid item xs={12}>
                   <Button
-                    variant="contained"
+                    variant="text"
                     startIcon={<ArrowBack />}
                     onClick={handleClickBack}
                   >
@@ -424,7 +424,7 @@ const CarsView = () => {
                 havingError={havingError}
               />
             </Grid>
-            <Grid item xs={12} sm={9} md={8} mt={{ xs: 8, sm: 0 }}>
+            <Grid item xs={12} sm={9} md={8} >
               <Stack spacing={2}>
                 <CarsList
                   cars={cars}

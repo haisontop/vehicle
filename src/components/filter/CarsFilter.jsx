@@ -18,6 +18,7 @@ import {
   Switch,
   FormControlLabel,
   FormControl,
+  Input,
 } from "@mui/material";
 import TagManager from "react-gtm-module";
 import { makeStyles } from "@mui/styles";
@@ -32,6 +33,8 @@ import {
 } from "../../constants";
 import Dialog from "@mui/material/Dialog";
 import CloseIcon from "@mui/icons-material/Close";
+import SearchIcon from '@mui/icons-material/Search';
+import TuneRoundedIcon from '@mui/icons-material/TuneRounded';
 import Slide from "@mui/material/Slide";
 
 const useStyles = makeStyles((theme) => {
@@ -183,8 +186,8 @@ const CarsFilter = ({
                           handleChange(event);
                         }}
                         fullWidth
-                        sx={{'& .MuiInputBase-root':{paddingY:4.5,borderRadius:1}}}
-                       
+                        sx={{ '& .MuiInputBase-root': { paddingY: 4.5, borderRadius: 1 } }}
+
                       ></TextField>
                     )}
                   </Field>
@@ -208,9 +211,9 @@ const CarsFilter = ({
                         }}
                         className="gtm-select-field"
                         sx={{
-                           '& .MuiSelect-select': {
+                          '& .MuiSelect-select': {
                             paddingY: 3,
-                            backgroundColor:'common.white'
+                            backgroundColor: 'common.white'
                           }
                         }}
                       >
@@ -231,7 +234,7 @@ const CarsFilter = ({
                           sx={{
                             '& .MuiSelect-select': {
                               paddingY: 3,
-                              backgroundColor:'common.white'
+                              backgroundColor: 'common.white'
                             }
                           }}
                           className="gtm-select-field"
@@ -285,7 +288,7 @@ const CarsFilter = ({
                             sx={{
                               '& .MuiSelect-select': {
                                 paddingY: 3,
-                                backgroundColor:'common.white'
+                                backgroundColor: 'common.white'
                               }
                             }}
                             className="gtm-select-field"
@@ -322,9 +325,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          '& .MuiSelect-select': {
                             paddingY: 3,
-                            backgroundColor:'common.white'
+                            backgroundColor: 'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -356,9 +359,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          '& .MuiSelect-select': {
                             paddingY: 3,
-                            backgroundColor:'common.white'
+                            backgroundColor: 'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -390,9 +393,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          '& .MuiSelect-select': {
                             paddingY: 3,
-                            backgroundColor:'common.white'
+                            backgroundColor: 'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -424,9 +427,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          '& .MuiSelect-select': {
                             paddingY: 3,
-                            backgroundColor:'common.white'
+                            backgroundColor: 'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -459,9 +462,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          '& .MuiSelect-select': {
                             paddingY: 3,
-                            backgroundColor:'common.white',
+                            backgroundColor: 'common.white',
                           }
                         }}
                         className="gtm-select-field"
@@ -493,9 +496,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          '& .MuiSelect-select': {
                             paddingY: 3,
-                            backgroundColor:'common.white'
+                            backgroundColor: 'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -527,9 +530,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          '& .MuiSelect-select': {
                             paddingY: 3,
-                            backgroundColor:'common.white'
+                            backgroundColor: 'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -561,9 +564,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          '& .MuiSelect-select': {
                             paddingY: 3,
-                            backgroundColor:'common.white'
+                            backgroundColor: 'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -596,9 +599,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          '& .MuiSelect-select': {
                             paddingY: 3,
-                            backgroundColor:'common.white'
+                            backgroundColor: 'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -634,9 +637,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          '& .MuiSelect-select': {
                             paddingY: 3,
-                            backgroundColor:'common.white'
+                            backgroundColor: 'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -669,9 +672,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          '& .MuiSelect-select': {
                             paddingY: 3,
-                            backgroundColor:'common.white'
+                            backgroundColor: 'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -703,9 +706,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          '& .MuiSelect-select': {
                             paddingY: 3,
-                            backgroundColor:'common.white'
+                            backgroundColor: 'common.white'
                           }
                         }}
                         className="gtm-select-field"
@@ -738,9 +741,9 @@ const CarsFilter = ({
                     {({ field, form }) => (
                       <Select
                         sx={{
-                           '& .MuiSelect-select': {
+                          '& .MuiSelect-select': {
                             paddingY: 3,
-                            backgroundColor:'common.white'
+                            backgroundColor: 'common.white'
                           }
                         }}
 
@@ -910,9 +913,27 @@ const CarsFilter = ({
   return (
     <>
       <Box display={{ xs: "block", sm: "none" }}>
-        <Button variant="contained" onClick={handleClickOpen}>
-          Filter
-        </Button>
+        <Box display={'flex'} gap={1} >
+          <Input startAdornment={<SearchIcon />} disableUnderline placeholder="Search" sx={{ px: 3, flexGrow: 1, borderRadius: 5, display: 'flex' }} />
+          <Button variant="contained" sx={{ borderRadius: 5, paddingY: 3, gap: 1 }} onClick={handleClickOpen}>
+            <TuneRoundedIcon />
+            Filter
+          </Button>
+        </Box>
+        <Stack direction="row" spacing={0.5}>
+          <Button sx={{ bgcolor: 'common.white', borderRadius: 5, paddingY: 3,flexGrow:1,fontSize:9 }}
+          onClick={()=>{}}
+          >Best SUVs</Button>
+          <Button sx={{ bgcolor: 'common.white', borderRadius: 5, paddingY: 3,flexGrow:1 ,fontSize:9  }}
+          onClick={()=>{}}
+          >Best Hatchbacks</Button>
+          <Button sx={{ bgcolor: 'common.white', borderRadius: 5, paddingY: 3,flexGrow:1 ,fontSize:9  }}
+          onClick={()=>{}}
+          >Best Saloons</Button>
+          <Button sx={{ bgcolor: 'common.white', borderRadius: 5, paddingY: 3,flexGrow:1 ,fontSize:9  }}
+          onClick={()=>{}}
+          >Top Sellers</Button>
+        </Stack>
         <Dialog
           fullScreen
           open={open}

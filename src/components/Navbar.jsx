@@ -23,7 +23,7 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import CloseIcon from "@mui/icons-material/Close";
-import SearchIcon from '@mui/icons-material/Search';
+
 import { useSearchSettings } from "../hooks";
 import { SearchContext, restoreCookieEnabled } from "../contexts/SearchContext";
 import {
@@ -168,8 +168,6 @@ export const Navbar = (props) => {
             />
           </Box>
 
-          {/* <Box sx={{ flexGrow: 1 }} />
-          <Input startAdornment={<SearchIcon/>} placeholder="Search" sx={{px:3 ,py:0.5, borderRadius:1, display:{xs:'none', sm:'flex'}}}/> */}
           <Box sx={{ flexGrow: 1 }} />
           {isAgent ? (
             <>
