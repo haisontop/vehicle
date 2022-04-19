@@ -153,12 +153,6 @@ const CarDetails = ({ details, handleClickBack }) => {
     return () => {};
   }, [searchId]);
 
-  React.useEffect(() => {
-    if (!open) {
-      document.body.style.overflow = "auto";
-    }
-  }, [open]);
-
   const handleClickSave = async () => {
     TagManager.dataLayer({
       dataLayer: {
@@ -492,6 +486,7 @@ const CarDetails = ({ details, handleClickBack }) => {
       </Grid>
       {open && (
         <Dialog
+          disableScrollLock
           open={open}
           onClose={handleClose}
           maxWidth="sm"
