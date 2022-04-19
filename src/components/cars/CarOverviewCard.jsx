@@ -12,18 +12,18 @@ import {
   Stack,
   Button,
 } from "@mui/material";
-import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import { styled } from "@mui/material/styles";
 import React, { useState } from "react";
-import Link from 'next/link'
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { MileIcon } from "../icons/MileIcon";
 import { TransmissionTypeIcon } from "../icons/TransmissionTypeIcon";
 import { ClipboardIcon } from "../icons/ClipboardIcon";
 import { FuelTypeIcon } from "../icons/FuelTypeIcon";
 import { DealerIcon } from "../icons/DealerIcon";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useTheme } from "@emotion/react";
 import {
   getPriceIndicatorColor,
@@ -42,14 +42,19 @@ const GridForDivider = styled(Grid)(({ theme }) => ({
 }));
 
 const LightTooltip = styled(({ className, ...props }) => (
-  <Tooltip {...props} arrow  placement="bottom-start" classes={{ popper: className }} />
+  <Tooltip
+    {...props}
+    arrow
+    placement="bottom-start"
+    classes={{ popper: className }}
+  />
 ))(({ theme }) => ({
   [`& .${tooltipClasses.arrow}`]: {
     color: theme.palette.common.white,
   },
   [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: theme.palette.common.white,
-    color: 'rgba(0, 0, 0, 0.87)',
+    color: "rgba(0, 0, 0, 0.87)",
     boxShadow: theme.shadows[4],
   },
 }));
@@ -59,9 +64,7 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
   const router = useRouter();
   const { vehicle, media, adverts, metadata, advertiser } = details;
 
-
   const { forecourtPrice } = adverts;
-
 
   const mainMediaUrl = React.useMemo(() => {
     if (media && media.images && media.images.length > 0) {
@@ -74,18 +77,22 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
     return router.query.isAgent === "true";
   }, [router.query]);
 
-
   return (
-    <Card
-      sx={{ height: "100%", p: 0, borderRadius: 1, position: 'relative' }}
-    >
-      <IconButton sx={{ position: 'absolute', zIndex: 20, top: '1rem', right: '1rem', bgcolor: 'primary.main', color: 'white' }}
+    <Card sx={{ height: "100%", p: 0, borderRadius: 1, position: "relative" }}>
+      <IconButton
+        sx={{
+          position: "absolute",
+          zIndex: 20,
+          top: "1rem",
+          right: "1rem",
+          bgcolor: "primary.main",
+          color: "white",
+        }}
         onClick={onFavoritClick}
       >
         <FavoriteBorderIcon />
       </IconButton>
       <CardActionArea
-
         sx={{
           height: "100%",
           alignItems: "start",
@@ -97,8 +104,15 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
       >
         <CardMedia
           component="img"
-          sx={{ height: { xs: "158px", sm: "200px", md: "158px" } }}
-          image={mainMediaUrl || '/images/car_placeholder.svg'}
+          sx={{
+            height: {
+              xs: "158px",
+              sm: "200px",
+              md: "158px",
+              objectFit: mainMediaUrl ? "cover" : "contain",
+            },
+          }}
+          image={mainMediaUrl || "/images/car_placeholder.svg"}
           alt="Media"
           onClick={() => handleClickCard(metadata.stockId)}
         />
@@ -117,7 +131,9 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
             onClick={() => handleClickCard(metadata.stockId)}
           />
         )}
-        <CardContent sx={{ p: 2, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+        <CardContent
+          sx={{ p: 2, display: "flex", flexDirection: "column", flexGrow: 1 }}
+        >
           <Stack
             direction="row"
             justifyContent="space-between"
@@ -141,26 +157,30 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
             {adverts &&
               adverts.retailAdverts &&
               adverts.retailAdverts.priceIndicatorRating &&
-              adverts.retailAdverts.priceIndicatorRating !==
-              "NOANALYSIS" && (
+              adverts.retailAdverts.priceIndicatorRating !== "NOANALYSIS" && (
                 <LightTooltip
-                 
                   title={
-                    <Box
-                      p={1}
-                      sx={{ width: "250px" }}>
-                      <Typography fontSize={'11px'} >
-                        Blue are proud to provide Autotrader priceindicators based on a detailed analysis ofcomparable car listings including make, model, trim, year, mileage and more. Weshow price indicators on all vehicles. It isintended to provide guidance and is not anofficial appraisal or guarantee.
+                    <Box p={1} sx={{ width: "250px" }}>
+                      <Typography fontSize={"11px"}>
+                        Blue are proud to provide Autotrader priceindicators
+                        based on a detailed analysis ofcomparable car listings
+                        including make, model, trim, year, mileage and more.
+                        Weshow price indicators on all vehicles. It isintended
+                        to provide guidance and is not anofficial appraisal or
+                        guarantee.
                       </Typography>
                       <Stack direction="row" justifyContent="end">
-                        <Button variant="text"  size="small" sx={{fontSize:13}}>
+                        <Button
+                          variant="text"
+                          size="small"
+                          sx={{ fontSize: 13 }}
+                        >
                           Read More
                           <ChevronRightIcon />
                         </Button>
                       </Stack>
                     </Box>
                   }
-
                 >
                   <Chip
                     label={getPriceIndicatorLabel(
@@ -182,21 +202,19 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
                       lineHeight: 1.33,
                     }}
                     onClick={(e) => setAnchorEl(e.target)}
-
                   />
                 </LightTooltip>
               )}
-
-
           </Stack>
-          <Box gap={2} display={'flex'} flexGrow={1} flexDirection="column" justifyContent="space-between"
+          <Box
+            gap={2}
+            display={"flex"}
+            flexGrow={1}
+            flexDirection="column"
+            justifyContent="space-between"
             onClick={() => handleClickCard(metadata.stockId)}
           >
-
-            <Box
-              display="column"
-              alignItems="start"
-            >
+            <Box display="column" alignItems="start">
               <Typography variant="h4" sx={{ lineHeight: 1.2 }}>
                 {vehicle.make} {vehicle.model}
               </Typography>
@@ -251,7 +269,6 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
                 </>
               )}
             </Box>
-
 
             {isAgent && (
               <Stack direction="row" spacing={0.6} alignItems="start">
