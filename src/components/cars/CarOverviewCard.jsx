@@ -10,9 +10,9 @@ import {
   IconButton,
   Chip,
   Stack,
-  Popover,
   Button,
 } from "@mui/material";
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { styled } from "@mui/material/styles";
 import React, { useState } from "react";
 import Link from 'next/link'
@@ -41,6 +41,19 @@ const GridForDivider = styled(Grid)(({ theme }) => ({
   },
 }));
 
+const LightTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} arrow  placement="bottom-start" classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.arrow}`]: {
+    color: theme.palette.common.white,
+  },
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: theme.palette.common.white,
+    color: 'rgba(0, 0, 0, 0.87)',
+    boxShadow: theme.shadows[4],
+  },
+}));
+
 const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
   const theme = useTheme();
   const router = useRouter();
@@ -49,7 +62,6 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
 
   const { forecourtPrice } = adverts;
 
-  const [anchorEl, setAnchorEl] = useState(null);
 
   const mainMediaUrl = React.useMemo(() => {
     if (media && media.images && media.images.length > 0) {
@@ -62,7 +74,7 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
     return router.query.isAgent === "true";
   }, [router.query]);
 
-    
+
   return (
     <Card
       sx={{ height: "100%", p: 0, borderRadius: 1, position: 'relative' }}
@@ -86,7 +98,7 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
         <CardMedia
           component="img"
           sx={{ height: { xs: "158px", sm: "200px", md: "158px" } }}
-          image={mainMediaUrl||'/images/car_placeholder.svg'}
+          image={mainMediaUrl || '/images/car_placeholder.svg'}
           alt="Media"
           onClick={() => handleClickCard(metadata.stockId)}
         />
@@ -131,58 +143,51 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
               adverts.retailAdverts.priceIndicatorRating &&
               adverts.retailAdverts.priceIndicatorRating !==
               "NOANALYSIS" && (
-                <Chip
-                  label={getPriceIndicatorLabel(
-                    adverts.retailAdverts.priceIndicatorRating
-                  )}
-                  size="small"
-                  sx={{
-                    backgroundColor: getPriceIndicatorColor(
+                <LightTooltip
+                 
+                  title={
+                    <Box
+                      p={1}
+                      sx={{ width: "250px" }}>
+                      <Typography fontSize={'11px'} >
+                        Blue are proud to provide Autotrader priceindicators based on a detailed analysis ofcomparable car listings including make, model, trim, year, mileage and more. Weshow price indicators on all vehicles. It isintended to provide guidance and is not anofficial appraisal or guarantee.
+                      </Typography>
+                      <Stack direction="row" justifyContent="end">
+                        <Button variant="text"  size="small" sx={{fontSize:13}}>
+                          Read More
+                          <ChevronRightIcon />
+                        </Button>
+                      </Stack>
+                    </Box>
+                  }
+
+                >
+                  <Chip
+                    label={getPriceIndicatorLabel(
                       adverts.retailAdverts.priceIndicatorRating
-                    ),
-                    color: getPriceIndicatorLabelColor(
-                      adverts.retailAdverts.priceIndicatorRating
-                    ),
-                    textTransform: "capitalize",
-                    borderRadius: "3px",
-                    fontSize: "0.85em",
-                    fontWeight: 600,
-                    p: "4px",
-                    lineHeight: 1.33,
-                  }}
-                  onClick={(e)=>setAnchorEl(e.target)}
-                                    
-                />
+                    )}
+                    size="small"
+                    sx={{
+                      backgroundColor: getPriceIndicatorColor(
+                        adverts.retailAdverts.priceIndicatorRating
+                      ),
+                      color: getPriceIndicatorLabelColor(
+                        adverts.retailAdverts.priceIndicatorRating
+                      ),
+                      textTransform: "capitalize",
+                      borderRadius: "3px",
+                      fontSize: "0.85em",
+                      fontWeight: 600,
+                      p: "4px",
+                      lineHeight: 1.33,
+                    }}
+                    onClick={(e) => setAnchorEl(e.target)}
+
+                  />
+                </LightTooltip>
               )}
-            <Popover
-              open={Boolean(anchorEl)}
-              onClose={() => setAnchorEl(null)}
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right',
-              }}
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              sx={{ mt: 2,  }}
-              
-            >
-              <Box
-                p={2}
-                sx={{ width: "250px" }}>
-                <Typography fontSize={'11px'} >
-                  Blue are proud to provide Autotrader priceindicators based on a detailed analysis ofcomparable car listings including make, model, trim, year, mileage and more. Weshow price indicators on all vehicles. It isintended to provide guidance and is not anofficial appraisal or guarantee.
-                </Typography>
-                <Stack direction="row" justifyContent="end">
-                  <Button variant="text" size="small">
-                    Read More
-                    <ChevronRightIcon />
-                  </Button>
-                </Stack>
-              </Box>
-            </Popover>
+
+
           </Stack>
           <Box gap={2} display={'flex'} flexGrow={1} flexDirection="column" justifyContent="space-between"
             onClick={() => handleClickCard(metadata.stockId)}
