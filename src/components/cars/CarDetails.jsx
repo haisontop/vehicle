@@ -46,12 +46,13 @@ import RunningCostDialog from "../dialogs/RunningCostDialog";
 import axios from "axios";
 import { SearchContext, restoreCookieEnabled } from "../../contexts/SearchContext";
 import { ArrowBack } from "@mui/icons-material";
+import CallAgentDialog from "../dialogs/CallAgentDialog";
 
 export const DEFAULT_PHONE_NUMBER = "00442030059330";
 
 const CarDetails = ({ details, handleClickBack }) => {
   const router = useRouter();
-  const [open, setOpen] = React.useState(false);
+  const [openCall, setOpenCall] = React.useState(false);
   const [specificationOpen, setSpecificationOpen] = React.useState(false);
   const [runningCostOpen, setRunningCostOpen] = React.useState(false);
 
@@ -69,11 +70,11 @@ const CarDetails = ({ details, handleClickBack }) => {
   const [saved, setSaved] = React.useState(false);
 
   const handleClickOpen = () => {
-    setOpen(true);
+    setOpenCall(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setOpenCall(false);
   };
 
   const images = React.useMemo(() => {
@@ -478,28 +479,8 @@ const CarDetails = ({ details, handleClickBack }) => {
           </Card>
         </Grid>
       </Grid>
-      {open &&
-        <Dialog
-          open={open}
-
-          onClose={handleClose}
-          maxWidth="sm"
-          fullWidth
-          aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">Call Agent</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Number: {agentAddress ? agentAddress : DEFAULT_PHONE_NUMBER}
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose} autoFocus>
-              OK
-            </Button>
-          </DialogActions>
-        </Dialog>
+      {openCall &&
+        <CallAgentDialog open={openCall} onClose={handleClose} phonNumber={agentAddress || DEFAULT_PHONE_NUMBER} />
       }
 
 
