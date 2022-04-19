@@ -3,25 +3,25 @@ import { Box } from "@mui/system";
 import React, { useContext } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { SearchContext,restoreCookieEnabled } from "../../contexts/SearchContext";
+import {
+  SearchContext,
+  restoreCookieEnabled,
+} from "../../contexts/SearchContext";
 import CarOverviewCard from "./CarOverviewCard";
 
 const CarsList = ({ cars, loading, handleClickCard }) => {
+  const cookieEnabled = restoreCookieEnabled();
 
-  const cookieEnabled =restoreCookieEnabled();
-
-  const { userId,onChangeCookieEnabled } = useContext(SearchContext);
+  const { userId, onChangeCookieEnabled } = useContext(SearchContext);
 
   const router = useRouter();
 
   const handleFavorit = async (details) => {
-   
-    if (cookieEnabled===null||cookieEnabled==="false") {
-      onChangeCookieEnabled(undefined)
+    if (cookieEnabled === null || cookieEnabled === "false") {
+      onChangeCookieEnabled(undefined);
     }
-    router.push({ query: {...router.query, user:1111 } })
-    
-    
+    router.push({ query: { ...router.query, user: userId } });
+
     if (userId) {
       try {
         const fetchResult = await axios.post(
@@ -32,7 +32,7 @@ const CarsList = ({ cars, loading, handleClickCard }) => {
         console.log("error", error);
       }
     }
-  }
+  };
 
   return (
     <>
@@ -52,7 +52,11 @@ const CarsList = ({ cars, loading, handleClickCard }) => {
         ) : (
           cars.map((car) => (
             <Grid item xs={12} sm={6} md={6} lg={4} key={car.metadata.stockId}>
-              <CarOverviewCard details={car} handleClickCard={handleClickCard} onFavoritClick={() => handleFavorit(car)} />
+              <CarOverviewCard
+                details={car}
+                handleClickCard={handleClickCard}
+                onFavoritClick={() => handleFavorit(car)}
+              />
             </Grid>
           ))
         )}
