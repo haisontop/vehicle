@@ -226,6 +226,7 @@ export const Navbar = (props) => {
                   open={mobileMenuOpen}
                   onClose={handleCloseMobileMenu}
                   onClick={handleCloseMobileMenu}
+                  disableScrollLock
                   PaperProps={{
                     elevation: 0,
                     sx: {

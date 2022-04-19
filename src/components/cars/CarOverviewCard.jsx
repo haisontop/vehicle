@@ -42,24 +42,11 @@ const GridForDivider = styled(Grid)(({ theme }) => ({
 }));
 
 const LightTooltip = styled(({ className, ...props }) => (
-<<<<<<< HEAD
   <Tooltip {...props} arrow placement="bottom-start" classes={{ popper: className }} />
 ))(({ theme }) => ({
   [`& .${tooltipClasses.arrow}`]: {
     color: theme.palette.common.white,
     zIndex: 10
-=======
-  <Tooltip
-    {...props}
-    arrow
-    placement="bottom-start"
-    classes={{ popper: className }}
-  />
-))(({ theme }) => ({
-  [`& .${tooltipClasses.arrow}`]: {
-    color: theme.palette.common.white,
-    zIndex: 10,
->>>>>>> fa5d5ef33445dd13ddd156ebf0c13d980924bfaa
   },
   [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: theme.palette.common.white,
@@ -88,25 +75,9 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
     return router.query.isAgent === "true";
   }, [router.query]);
 
-<<<<<<< HEAD
-
-
-
   return (
     <Card
       sx={{ height: "100%", p: 0, borderRadius: 1, position: 'relative', cursor: 'pointer', '&:hover': { boxShadow: theme.shadows[24] } }}
-=======
-  return (
-    <Card
-      sx={{
-        height: "100%",
-        p: 0,
-        borderRadius: 1,
-        position: "relative",
-        cursor: "pointer",
-        "&:hover": { boxShadow: theme.shadows[24] },
-      }}
->>>>>>> fa5d5ef33445dd13ddd156ebf0c13d980924bfaa
     >
       <IconButton
         sx={{
@@ -124,18 +95,8 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
 
       <CardMedia
         component="img"
-<<<<<<< HEAD
         sx={{ height: '200px', width: '100%', objectFit: 'cover', objectPosition: 'center' }}
         image={mainMediaUrl || '/images/car_placeholder.svg'}
-=======
-        sx={{
-          height: "200px",
-          width: "100%",
-          objectFit: "cover",
-          objectPosition: "center",
-        }}
-        image={mainMediaUrl || "/images/car_placeholder.svg"}
->>>>>>> fa5d5ef33445dd13ddd156ebf0c13d980924bfaa
         alt="Media"
         onClick={() => handleClickCard(metadata.stockId)}
       />
@@ -154,7 +115,6 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
           onClick={() => handleClickCard(metadata.stockId)}
         />
       )}
-<<<<<<< HEAD
       <CardContent sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
         <Stack
           direction="row"
@@ -170,23 +130,6 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
               variant="h3"
               color="primary"
               fontWeight={800}
-=======
-      <CardContent
-        sx={{ display: "flex", flexDirection: "column", flexGrow: 1 }}
-      >
-        <Stack
-          direction="row"
-          justifyContent="space-between"
-          spacing={0.5}
-          mb={1}
-          width={"100%"}
-        >
-          <Box display="flex">
-            <Typography
-              variant="h4"
-              color="primary"
-              sx={{ fontWeight: 400, lineHeight: 1.2 }}
->>>>>>> fa5d5ef33445dd13ddd156ebf0c13d980924bfaa
             >
               {parseInt(forecourtPrice.amountGBP)
                 .toLocaleString("en-US", {
@@ -199,19 +142,14 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
           {adverts &&
             adverts.retailAdverts &&
             adverts.retailAdverts.priceIndicatorRating &&
-<<<<<<< HEAD
             adverts.retailAdverts.priceIndicatorRating !==
             "NOANALYSIS" && (
-=======
-            adverts.retailAdverts.priceIndicatorRating !== "NOANALYSIS" && (
->>>>>>> fa5d5ef33445dd13ddd156ebf0c13d980924bfaa
               <LightTooltip
                 open={pricePop}
                 onOpen={() => setPricePop(true)}
                 onClose={() => setPricePop(false)}
                 leaveTouchDelay={5000}
                 title={
-<<<<<<< HEAD
                   <Box
                     p={1}
                     sx={{ width: "250px" }}>
@@ -227,42 +165,11 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
                   </Box>
                 }
 
-=======
-                  <Box p={1} sx={{ width: "250px" }}>
-                    <Typography fontSize={"11px"}>
-                      Blue are proud to provide Autotrader priceindicators based
-                      on a detailed analysis ofcomparable car listings including
-                      make, model, trim, year, mileage and more. Weshow price
-                      indicators on all vehicles. It isintended to provide
-                      guidance and is not anofficial appraisal or guarantee.
-                    </Typography>
-                    <Stack direction="row" justifyContent="end">
-                      <Link
-                        href="https://trade.autotrader.co.uk/price-indicator/"
-                        passHref={true}
-                      >
-                        <Button
-                          variant="text"
-                          size="small"
-                          sx={{ fontSize: 13 }}
-                        >
-                          Read More
-                          <ChevronRightIcon />
-                        </Button>
-                      </Link>
-                    </Stack>
-                  </Box>
-                }
->>>>>>> fa5d5ef33445dd13ddd156ebf0c13d980924bfaa
               >
                 <Chip
                   label={getPriceIndicatorLabel(
                     adverts.retailAdverts.priceIndicatorRating
                   )}
-<<<<<<< HEAD
-=======
-                  size="small"
->>>>>>> fa5d5ef33445dd13ddd156ebf0c13d980924bfaa
                   sx={{
                     backgroundColor: getPriceIndicatorColor(
                       adverts.retailAdverts.priceIndicatorRating
@@ -271,7 +178,6 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
                       adverts.retailAdverts.priceIndicatorRating
                     ),
                     textTransform: "capitalize",
-<<<<<<< HEAD
                     borderRadius: 0.5,
                     p: 0.5,
                   }}
@@ -298,45 +204,10 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
             <Typography variant="body1" whiteSpace="nowrap" color={'primary.main'}>
               {vehicle.odometerReadingMiles} miles
             </Typography>
-=======
-                    borderRadius: "3px",
-                    fontSize: "0.85em",
-                    fontWeight: 600,
-                    p: "4px",
-                    lineHeight: 1.33,
-                  }}
-                  onClick={() => setPricePop(true)}
-                />
-              </LightTooltip>
-            )}
-        </Stack>
-        <Box
-          gap={2}
-          display={"flex"}
-          flexGrow={1}
-          flexDirection="column"
-          justifyContent="space-between"
-          onClick={() => handleClickCard(metadata.stockId)}
-        >
-          <Box display="column" alignItems="start">
-            <Typography variant="h4" sx={{ lineHeight: 1.2 }}>
-              {vehicle.make} {vehicle.model}
-            </Typography>
-          </Box>
-          <Box flexGrow={1} />
-          <Box display="flex" direction="row" gap={0.5} flexWrap="wrap">
-            <Stack direction="row" spacing={0.6} alignItems="center">
-              <TransmissionTypeIcon />
-              <Typography variant="body1" whiteSpace="nowrap">
-                {vehicle.odometerReadingMiles} miles
-              </Typography>
-            </Stack>
->>>>>>> fa5d5ef33445dd13ddd156ebf0c13d980924bfaa
             <Divider
               orientation="vertical"
               variant="middle"
               flexItem
-<<<<<<< HEAD
               
               sx={{
                 borderRightWidth: 2,
@@ -346,15 +217,6 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
               }}
             />
             <Typography variant="body1" whiteSpace="nowrap" color={'primary.main'}>
-=======
-              sx={{
-                borderRightWidth: 2,
-                borderColor: "rgba(35, 35, 35, 1)",
-                my: 0.5,
-              }}
-            />
-            <Typography variant="body1" whiteSpace="nowrap">
->>>>>>> fa5d5ef33445dd13ddd156ebf0c13d980924bfaa
               {vehicle.transmissionType}
             </Typography>
             <Divider
@@ -363,18 +225,11 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
               sx={{
                 borderRightWidth: 2,
                 borderColor: "rgba(35, 35, 35, 1)",
-<<<<<<< HEAD
                 color:'primary.main',
                 my: 0.5,
               }}
             />
             <Typography variant="body1" whiteSpace="nowrap" color={'primary.main'}>
-=======
-                my: 0.5,
-              }}
-            />
-            <Typography variant="body1" whiteSpace="nowrap">
->>>>>>> fa5d5ef33445dd13ddd156ebf0c13d980924bfaa
               {vehicle.fuelType}
             </Typography>
             {vehicle.emissionClass && (
@@ -385,28 +240,17 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
                   sx={{
                     borderRightWidth: 2,
                     borderColor: "rgba(35, 35, 35, 1)",
-<<<<<<< HEAD
                     color:'primary.main',
                     my: 0.5,
                   }}
                 />
                 <Typography variant="body1" whiteSpace="nowrap" color={'primary.main'}>
-=======
-                    my: 0.5,
-                  }}
-                />
-                <Typography variant="body1" whiteSpace="nowrap">
->>>>>>> fa5d5ef33445dd13ddd156ebf0c13d980924bfaa
                   ULEZ
                 </Typography>
               </>
             )}
           </Box>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> fa5d5ef33445dd13ddd156ebf0c13d980924bfaa
           {isAgent && (
             <Stack direction="row" spacing={0.6} alignItems="start">
               <DealerIcon />
