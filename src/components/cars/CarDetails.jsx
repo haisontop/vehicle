@@ -40,7 +40,7 @@ import TagManager from "react-gtm-module";
 import { TransmissionTypeIcon } from "../icons/TransmissionTypeIcon";
 import { DealerIcon } from "../icons/DealerIcon";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { WheelIcon } from "../icons/WheelIcon";
 import { CalculatorIcon } from "../icons/CalculatorIcon";
 import SpecificationDialog from "../dialogs/SpecificationDialog";
@@ -202,7 +202,6 @@ const CarDetails = ({ details, handleClickBack }) => {
     <>
       <Grid container spacing={4} pb={{ xs: 2, sm: 0 }}>
         <Grid item xs={12}>
-
           <Button
             variant="text"
             startIcon={<ArrowBack />}
@@ -210,12 +209,27 @@ const CarDetails = ({ details, handleClickBack }) => {
           >
             Back
           </Button>
-
         </Grid>
-        <Grid item xs={12} md={6} position="relative">
+        <Grid item xs={12} md={7} position="relative">
+          {!isFavorite && (
+            <IconButton
+              sx={{
+                position: "absolute",
+                zIndex: 20,
+                top: "3rem",
+                right: "1rem",
+                bgcolor: "primary.main",
+                color: "white",
+              }}
+              onClick={handleClickSave}
+            >
+              <FavoriteBorderIcon />
+            </IconButton>
+          )}
+
           <ImageGallery items={images} />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={5}>
           <Card
             sx={{
               p: 3,
@@ -225,19 +239,6 @@ const CarDetails = ({ details, handleClickBack }) => {
               gap: 3,
             }}
           >
-            <Box display="column" alignItems="start">
-              <Typography variant="h3" sx={{ lineHeight: 1.2 }}>
-                {vehicle.make} {vehicle.model}
-              </Typography>
-              <Box
-                height="2px"
-                width="50px"
-                mt={0.5}
-                sx={{
-                  backgroundImage: "linear-gradient(270deg, #54EFB6, #03A9F4)",
-                }}
-              />
-            </Box>
             <Box
               display="flex"
               alignItems={"center"}
@@ -247,7 +248,11 @@ const CarDetails = ({ details, handleClickBack }) => {
               <Typography
                 variant="h3"
                 color="primary"
-                sx={{ fontWeight: 600, lineHeight: 1.2 }}
+                sx={{
+                  fontWeight: 700,
+                  lineHeight: 1.2,
+                  fontSize: { xs: "35px", sm: "50px", lg: "70px" },
+                }}
               >
                 {parseInt(forecourtPrice.amountGBP)
                   .toLocaleString("en-US", {
@@ -282,10 +287,23 @@ const CarDetails = ({ details, handleClickBack }) => {
                   />
                 )}
             </Box>
-            <Typography variant="h3" sx={{ lineHeight: 1.2 }}>
+            <Typography
+              variant="h3"
+              sx={{
+                lineHeight: 1.2,
+                fontSize: { xs: "30px", sm: "40px", lg: "50px" },
+                fontWeight: 700,
+              }}
+            >
               {vehicle.make} {vehicle.model}
             </Typography>
-            <Box display="flex" direction="row" gap={0.5} flexWrap="wrap">
+            <Box
+              display="flex"
+              direction="row"
+              gap={0.5}
+              flexWrap="wrap"
+              color="#23325C"
+            >
               <Stack direction="row" spacing={0.6} alignItems="center">
                 <TransmissionTypeIcon />
                 <Typography variant="body1" whiteSpace="nowrap">
@@ -396,8 +414,8 @@ const CarDetails = ({ details, handleClickBack }) => {
               </Box>
             )}
 
-            <Box gap={3} display={{ xs: "none", sm: "flex" }}>
-              {isFavorite ? (
+            <Box gap={3}>
+              {isFavorite && (
                 <Button
                   variant="contained"
                   color="error"
@@ -408,18 +426,6 @@ const CarDetails = ({ details, handleClickBack }) => {
                 >
                   Delete
                 </Button>
-              ) : (
-                <Button
-                  variant="contained"
-                  color="primary"
-                  id="save-favorites-button"
-                  fullWidth
-                  sx={{ borderRadius: 5 }}
-                  onClick={handleClickSave}
-                  disabled={saved}
-                >
-                  {saved ? "Saved" : "Save"}
-                </Button>
               )}
               {!isAgent && (
                 <Button
@@ -429,7 +435,7 @@ const CarDetails = ({ details, handleClickBack }) => {
                   sx={{ borderRadius: 5 }}
                   onClick={handleClickOpen}
                 >
-                  Call Agent
+                  Contact Seller
                 </Button>
               )}
             </Box>
@@ -465,12 +471,15 @@ const CarDetails = ({ details, handleClickBack }) => {
           </Card>
         </Grid>
       </Grid>
-      {openCall &&
-        <CallAgentDialog open={openCall} onClose={handleClose} phonNumber={agentAddress || DEFAULT_PHONE_NUMBER} />
-      }
+      {openCall && (
+        <CallAgentDialog
+          open={openCall}
+          onClose={handleClose}
+          phonNumber={agentAddress || DEFAULT_PHONE_NUMBER}
+        />
+      )}
 
-
-      <Paper
+      {/* <Paper
         sx={{
           position: "fixed",
           bottom: 0,
@@ -505,15 +514,15 @@ const CarDetails = ({ details, handleClickBack }) => {
                   Call Agent
                 </Button>
               </Grid>
-              {/* <Grid item xs={6}>
+              <Grid item xs={6}>
                 <Button variant="contained" color="primary" fullWidth>
                   Message Agent
                 </Button>
-              </Grid> */}
+              </Grid>
             </Grid>
           </Box>
         </BottomNavigation>
-      </Paper>
+      </Paper> */}
 
       <SpecificationDialog
         isOpen={specificationOpen}

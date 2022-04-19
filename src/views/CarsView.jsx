@@ -360,7 +360,7 @@ const CarsView = () => {
   };
 
   return (
-    <Container maxWidth="xl" sx={{ pt: 2, pb: 6 }}>
+    <Container maxWidth={false} sx={{ pt: 2, pb: 6 }}>
       <Grid container spacing={2} sx={{ position: "relative" }}>
         {selectedId ? (
           <>
