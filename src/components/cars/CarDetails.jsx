@@ -158,7 +158,7 @@ const CarDetails = ({ details, handleClickBack }) => {
     if (cookieEnabled===null||cookieEnabled==="false") {
       onChangeCookieEnabled(undefined)
     }
-    router.push({ query: {...router.query, user:userId } })
+    router.push({ query: {...router.query, user:1111 } })
     if (userId) {
       try {
         const fetchResult = await axios.post(
