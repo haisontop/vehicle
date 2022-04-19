@@ -197,7 +197,7 @@ const CarDetails = ({ details, handleClickBack }) => {
         <Grid item xs={12}>
           <Box width="100%" display={"flex"}>
             <Button
-              variant="contained"
+              variant="text"
               startIcon={<ArrowBack />}
               onClick={handleClickBack}
             >
@@ -481,6 +481,7 @@ const CarDetails = ({ details, handleClickBack }) => {
 
       <Dialog
         open={open}
+        
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"

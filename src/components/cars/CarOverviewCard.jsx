@@ -46,11 +46,12 @@ const LightTooltip = styled(({ className, ...props }) => (
 ))(({ theme }) => ({
   [`& .${tooltipClasses.arrow}`]: {
     color: theme.palette.common.white,
+    zIndex:10
   },
   [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: theme.palette.common.white,
     color: 'rgba(0, 0, 0, 0.87)',
-    boxShadow: theme.shadows[4],
+    boxShadow: theme.shadows[2],
   },
 }));
 
@@ -58,6 +59,8 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
   const theme = useTheme();
   const router = useRouter();
   const { vehicle, media, adverts, metadata, advertiser } = details;
+
+  const [pricePop, setPricePop] = React.useState(false)
 
 
   const { forecourtPrice } = adverts;
@@ -74,30 +77,22 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
     return router.query.isAgent === "true";
   }, [router.query]);
 
+  
+
 
   return (
     <Card
-      sx={{ height: "100%", p: 0, borderRadius: 1, position: 'relative' }}
+      sx={{ height: "100%", p: 0, borderRadius: 1, position: 'relative',cursor:'pointer','&:hover':{boxShadow:theme.shadows[24]} }}
     >
       <IconButton sx={{ position: 'absolute', zIndex: 20, top: '1rem', right: '1rem', bgcolor: 'primary.main', color: 'white' }}
         onClick={onFavoritClick}
       >
         <FavoriteBorderIcon />
       </IconButton>
-      <CardActionArea
 
-        sx={{
-          height: "100%",
-          alignItems: "start",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-start",
-          position: "relative",
-        }}
-      >
         <CardMedia
           component="img"
-          sx={{ height: { xs: "158px", sm: "200px", md: "158px" } }}
+          sx={{height:'200px', width:'100%',objectFit:'cover',objectPosition:'center' }}
           image={mainMediaUrl || '/images/car_placeholder.svg'}
           alt="Media"
           onClick={() => handleClickCard(metadata.stockId)}
@@ -117,14 +112,16 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
             onClick={() => handleClickCard(metadata.stockId)}
           />
         )}
-        <CardContent sx={{ p: 2, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+        <CardContent sx={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
           <Stack
             direction="row"
             justifyContent="space-between"
             spacing={0.5}
             mb={1}
+            width={'100%'}
+           
           >
-            <Box display="flex">
+            <Box display="flex"  >
               <Typography
                 variant="h4"
                 color="primary"
@@ -144,7 +141,10 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
               adverts.retailAdverts.priceIndicatorRating !==
               "NOANALYSIS" && (
                 <LightTooltip
-                 
+                 open={pricePop}
+                 onOpen={()=>setPricePop(true)}
+                 onClose={()=>setPricePop(false)}
+                leaveTouchDelay={5000}
                   title={
                     <Box
                       p={1}
@@ -181,7 +181,8 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
                       p: "4px",
                       lineHeight: 1.33,
                     }}
-                    onClick={(e) => setAnchorEl(e.target)}
+                    
+                 onClick={()=>setPricePop(true)}
 
                   />
                 </LightTooltip>
@@ -263,7 +264,6 @@ const CarOverviewCard = ({ details, handleClickCard, onFavoritClick }) => {
             )}
           </Box>
         </CardContent>
-      </CardActionArea>
     </Card>
   );
 };
