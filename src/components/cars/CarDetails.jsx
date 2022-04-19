@@ -214,19 +214,6 @@ const CarDetails = ({ details, handleClickBack }) => {
         </Grid>
         <Grid item xs={12} md={6} position="relative">
           <ImageGallery items={images} />
-<<<<<<< HEAD
-          <IconButton sx={{ position: 'absolute', zIndex: 20, top: '3rem', right: '1rem', bgcolor: 'primary.main', color: 'white' }}
-            onClick={handleClickSave}
-            disabled={saved}
-          >
-            <FavoriteBorderIcon />
-          </IconButton>
-
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Card sx={{ p: 3, display: 'flex', flexDirection: 'column', bgcolor: 'common.white', gap: 3 }}>
-
-=======
         </Grid>
         <Grid item xs={12} md={6}>
           <Card
@@ -251,7 +238,6 @@ const CarDetails = ({ details, handleClickBack }) => {
                 }}
               />
             </Box>
->>>>>>> fa5d5ef33445dd13ddd156ebf0c13d980924bfaa
             <Box
               display="flex"
               alignItems={"center"}
@@ -479,36 +465,10 @@ const CarDetails = ({ details, handleClickBack }) => {
           </Card>
         </Grid>
       </Grid>
-<<<<<<< HEAD
       {openCall &&
         <CallAgentDialog open={openCall} onClose={handleClose} phonNumber={agentAddress || DEFAULT_PHONE_NUMBER} />
       }
 
-=======
-      {open && (
-        <Dialog
-          disableScrollLock
-          open={open}
-          onClose={handleClose}
-          maxWidth="sm"
-          fullWidth
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">Call Agent</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Number: {agentAddress ? agentAddress : DEFAULT_PHONE_NUMBER}
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose} autoFocus>
-              OK
-            </Button>
-          </DialogActions>
-        </Dialog>
-      )}
->>>>>>> fa5d5ef33445dd13ddd156ebf0c13d980924bfaa
 
       <Paper
         sx={{
