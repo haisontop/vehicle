@@ -116,7 +116,6 @@ export const Navbar = (props) => {
     );
   }, [baseURL, router.asPath, currentAddress]);
 
-
   const handleClickFavorites = () => {
     TagManager.dataLayer({
       dataLayer: {
@@ -127,11 +126,9 @@ export const Navbar = (props) => {
       ...router.query,
     });
 
-    if (cookieEnabled===null||cookieEnabled==="false") {
-      onChangeCookieEnabled(undefined)
-    }
-
-    if (cookieEnabled==="true")
+    if (cookieEnabled === null || cookieEnabled === "false") {
+      onChangeCookieEnabled(undefined);
+    } else if (cookieEnabled === "true" || cookieEnabled === true)
       router.push({
         pathname: "/favorites",
         query: filteredParams,
@@ -142,7 +139,7 @@ export const Navbar = (props) => {
     const filteredParams = cleanSearchParams({
       ...router.query,
       ...(router.query.id ? { id: null } : null),
-      favorite: null
+      favorite: null,
     });
 
     router.push({
