@@ -23,6 +23,7 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import CloseIcon from "@mui/icons-material/Close";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import SearchIcon from '@mui/icons-material/Search';
 import { useSearchSettings } from "../hooks";
 import { SearchContext, restoreCookieEnabled } from "../contexts/SearchContext";
@@ -127,11 +128,11 @@ export const Navbar = (props) => {
       ...router.query,
     });
 
-    if (cookieEnabled===null||cookieEnabled==="false") {
+    if (cookieEnabled === null || cookieEnabled === "false") {
       onChangeCookieEnabled(undefined)
     }
 
-    if (cookieEnabled==="true")
+    if (cookieEnabled === "true")
       router.push({
         pathname: "/favorites",
         query: filteredParams,
@@ -218,7 +219,7 @@ export const Navbar = (props) => {
                   size="small"
                   sx={{ ml: 2 }}
                 >
-                  <CustomMenuIcon sx={{ width: "40px", height: "40px" }} />
+                  <FavoriteBorderIcon sx={{ width: "40px", height: "40px" }} />
                 </IconButton>
                 <Menu
                   anchorEl={anchorEl}

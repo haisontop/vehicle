@@ -23,6 +23,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  IconButton,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import React, { useContext } from "react";
@@ -39,6 +40,7 @@ import TagManager from "react-gtm-module";
 import { TransmissionTypeIcon } from "../icons/TransmissionTypeIcon";
 import { DealerIcon } from "../icons/DealerIcon";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { WheelIcon } from "../icons/WheelIcon";
 import { CalculatorIcon } from "../icons/CalculatorIcon";
 import SpecificationDialog from "../dialogs/SpecificationDialog";
@@ -197,64 +199,29 @@ const CarDetails = ({ details, handleClickBack }) => {
     <>
       <Grid container spacing={4} pb={{ xs: 2, sm: 0 }}>
         <Grid item xs={12}>
-          <Box width="100%" display={"flex"}>
-            <Button
-              variant="text"
-              startIcon={<ArrowBack />}
-              onClick={handleClickBack}
-            >
-              Back to search
-            </Button>
-            {isFavorite ? (
-              <Button
-                variant="contained"
-                color="error"
-                id="delete-favorites-button"
-                onClick={handleDeleteFavorite}
-                sx={{
-                  display: { xs: "inline-flex", sm: "none" },
-                  ml: "auto",
-                }}
-              >
-                Delete
-              </Button>
-            ) : (
-              <Button
-                variant="contained"
-                color="primary"
-                id="save-favorites-button"
-                onClick={handleClickSave}
-                disabled={saved}
-                sx={{
-                  display: { xs: "inline-flex", sm: "none" },
-                  ml: "auto",
-                }}
-              >
-                {saved ? "Saved" : "Save"}
-              </Button>
-            )}
-          </Box>
+
+          <Button
+            variant="text"
+            startIcon={<ArrowBack />}
+            onClick={handleClickBack}
+          >
+            Back
+          </Button>
+
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={6} position="relative">
           <ImageGallery items={images} />
+          <IconButton sx={{ position: 'absolute', zIndex: 20, top: '3rem', right: '1rem', bgcolor: 'primary.main', color: 'white' }}
+            onClick={handleClickSave}
+            disabled={saved}
+          >
+            <FavoriteBorderIcon />
+          </IconButton>
 
         </Grid>
         <Grid item xs={12} md={6}>
           <Card sx={{ p: 3, display: 'flex', flexDirection: 'column', bgcolor: 'common.white', gap: 3 }}>
-            <Box display="column" alignItems="start">
-              <Typography variant="h3" sx={{ lineHeight: 1.2 }}>
-                {vehicle.make} {vehicle.model}
-              </Typography>
-              <Box
-                height="2px"
-                width="50px"
-                mt={0.5}
-                sx={{
-                  backgroundImage:
-                    "linear-gradient(270deg, #54EFB6, #03A9F4)",
-                }}
-              />
-            </Box>
+
             <Box
               display="flex"
               alignItems={'center'}
@@ -300,6 +267,9 @@ const CarDetails = ({ details, handleClickBack }) => {
                   />
                 )}
             </Box>
+            <Typography variant="h3" sx={{ lineHeight: 1.2 }}>
+              {vehicle.make} {vehicle.model}
+            </Typography>
             <Box display="flex" direction="row" gap={0.5} flexWrap="wrap">
               <Stack direction="row" spacing={0.6} alignItems="center">
                 <TransmissionTypeIcon />
@@ -419,6 +389,7 @@ const CarDetails = ({ details, handleClickBack }) => {
                   color="error"
                   id="delete-favorites-button"
                   fullWidth
+                  sx={{ borderRadius: 5 }}
                   onClick={handleDeleteFavorite}
                 >
                   Delete
@@ -429,6 +400,7 @@ const CarDetails = ({ details, handleClickBack }) => {
                   color="primary"
                   id="save-favorites-button"
                   fullWidth
+                  sx={{ borderRadius: 5 }}
                   onClick={handleClickSave}
                   disabled={saved}
                 >
@@ -440,6 +412,7 @@ const CarDetails = ({ details, handleClickBack }) => {
                   variant="contained"
                   color="primary"
                   fullWidth
+                  sx={{ borderRadius: 5 }}
                   onClick={handleClickOpen}
                 >
                   Call Agent

@@ -379,7 +379,7 @@ const CarsView = () => {
                     startIcon={<ArrowBack />}
                     onClick={handleClickBack}
                   >
-                    Back to search
+                    Back
                   </Button>
                 </Grid>
                 <Grid item xs={12}>
