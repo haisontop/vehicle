@@ -411,7 +411,7 @@ const CarDetails = ({ details, handleClickBack }) => {
                   regular servicing at a Toyota dealer. 12 months warranty is
                   included with every Toyota Service, up to 100,000 miles or 10
                   years, whichever comes first, giving you a chance to relax in
-                  the knowledge that you and your vehicle are in safe hands.
+                  the knowledge that you and your vehicle are in safe hands.a
                   <Link
                     href="https://www.toyota.co.uk/owners/warranty/toyota-warranty"
                     underline="none"
