@@ -29,37 +29,37 @@ const typography = {
   h1: {
     fontWeight: 700,
     lineHeight: 80 / 64,
-    fontSize: pxToRem(40),
+    fontSize: pxToRem(64),
     ...responsiveFontSizes({ sm: 64, md: 64, lg: 64 })
   },
   h2: {
     fontWeight: 700,
     lineHeight: 64 / 48,
-    fontSize: pxToRem(32),
+    fontSize: pxToRem(48),
     ...responsiveFontSizes({ sm: 48, md: 48, lg: 48 })
   },
   h3: {
     fontWeight: 400,
     lineHeight: 1.5,
-    fontSize: pxToRem(24),
+    fontSize: pxToRem(32),
     ...responsiveFontSizes({ sm: 32, md: 32, lg: 32 })
   },
   h4: {
     fontWeight: 400,
     lineHeight: 1.5,
-    fontSize: pxToRem(20),
+    fontSize: pxToRem(24),
     ...responsiveFontSizes({ sm: 24, md: 24, lg: 24 })
   },
   h5: {
     fontWeight: 400,
     lineHeight: 1.5,
-    fontSize: pxToRem(18),
+    fontSize: pxToRem(20),
     ...responsiveFontSizes({ sm: 20, md: 20, lg: 20 })
   },
   h6: {
     fontWeight: 400,
     lineHeight: 28 / 18,
-    fontSize: pxToRem(17),
+    fontSize: pxToRem(18),
     ...responsiveFontSizes({ sm: 18, md: 18, lg: 18 })
   },
   subtitle1: {
