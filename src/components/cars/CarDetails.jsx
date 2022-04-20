@@ -1,20 +1,11 @@
 import {
   Card,
   Box,
-  CardContent,
   Typography,
   Grid,
   Stack,
   Button,
   Divider,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-  Paper,
-  BottomNavigation,
-  BottomNavigationAction,
   Chip,
   CardMedia,
   Link,
@@ -25,6 +16,7 @@ import {
   ListItemText,
   IconButton,
 } from "@mui/material";
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { styled } from "@mui/material/styles";
 import React, { useContext } from "react";
 import ImageGallery from "react-image-gallery";
@@ -55,11 +47,26 @@ import CallAgentDialog from "../dialogs/CallAgentDialog";
 
 export const DEFAULT_PHONE_NUMBER = "00442030059330";
 
+const LightTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} arrow placement="bottom-start" classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.arrow}`]: {
+    color: theme.palette.common.white,
+    zIndex: 10
+  },
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: theme.palette.common.white,
+    color: 'rgba(0, 0, 0, 0.87)',
+    boxShadow: theme.shadows[2],
+  },
+}));
+
 const CarDetails = ({ details, handleClickBack }) => {
   const router = useRouter();
   const [openCall, setOpenCall] = React.useState(false);
   const [specificationOpen, setSpecificationOpen] = React.useState(false);
   const [runningCostOpen, setRunningCostOpen] = React.useState(false);
+  const [pricePop, setPricePop] = React.useState(false)
 
   const { vehicle, media, adverts, advertiser, metadata } = details;
 
@@ -152,12 +159,12 @@ const CarDetails = ({ details, handleClickBack }) => {
         ) {
           setFeatures(fetchResult.data.data);
         }
-      } catch (error) {}
+      } catch (error) { }
     }
 
     fetchData();
 
-    return () => {};
+    return () => { };
   }, [searchId]);
 
   const handleClickSave = async () => {
@@ -265,25 +272,49 @@ const CarDetails = ({ details, handleClickBack }) => {
                 adverts.retailAdverts &&
                 adverts.retailAdverts.priceIndicatorRating &&
                 adverts.retailAdverts.priceIndicatorRating !== "NOANALYSIS" && (
-                  <Chip
-                    label={getPriceIndicatorLabel(
-                      adverts.retailAdverts.priceIndicatorRating
-                    )}
-                    size="small"
-                    sx={{
-                      backgroundColor: getPriceIndicatorColor(
+                  <LightTooltip
+                    open={pricePop}
+                    onOpen={() => setPricePop(true)}
+                    onClose={() => setPricePop(false)}
+                    leaveTouchDelay={5000}
+                    title={
+                      <Box
+                        p={1}
+                        sx={{ width: "250px" }}>
+                        <Typography fontSize={'11px'} >
+                          Blue are proud to provide Autotrader priceindicators based on a detailed analysis ofcomparable car listings including make, model, trim, year, mileage and more. Weshow price indicators on all vehicles. It isintended to provide guidance and is not anofficial appraisal or guarantee.
+                        </Typography>
+                        <Stack direction="row" justifyContent="end">
+                          <Button variant="text" size="small" sx={{ fontSize: 13 }}>
+                            Read More
+                            <ChevronRightIcon />
+                          </Button>
+                        </Stack>
+                      </Box>
+                    }
+                  >
+                    <Chip
+                      label={getPriceIndicatorLabel(
                         adverts.retailAdverts.priceIndicatorRating
-                      ),
-                      color: getPriceIndicatorLabelColor(
-                        adverts.retailAdverts.priceIndicatorRating
-                      ),
-                      textTransform: "capitalize",
-                      borderRadius: "3px",
-                      fontSize: "0.85em",
-                      p: 0.5,
-                      lineHeight: 1.33,
-                    }}
-                  />
+                      )}
+                      size="small"
+                      sx={{
+                        backgroundColor: getPriceIndicatorColor(
+                          adverts.retailAdverts.priceIndicatorRating
+                        ),
+                        color: getPriceIndicatorLabelColor(
+                          adverts.retailAdverts.priceIndicatorRating
+                        ),
+                        textTransform: "capitalize",
+                        borderRadius: "3px",
+                        fontSize: "0.85em",
+                        p: 0.5,
+                        lineHeight: 1.33,
+                      }}
+                      onClick={() => setPricePop(true)}
+                    />
+
+                  </LightTooltip>
                 )}
             </Box>
             <Typography variant="h4" fontWeight={600} sx={{ lineHeight: 1.2 }}>
@@ -424,17 +455,28 @@ const CarDetails = ({ details, handleClickBack }) => {
             )}
 
             {!isAgent && (
-              
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                fullWidth
-                sx={{ borderRadius: 5 }}
-                onClick={handleClickOpen}
-              >
-                Contact Seller
-              </Button>
+              <>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  fullWidth
+                  sx={{ borderRadius: 5, display: { xs: 'none', sm: 'flex' } }}
+                  onClick={handleClickOpen}
+                >
+                  Contact Seller
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                  sx={{ borderRadius: 5, display: { sm: 'none' } }}
+                  href={`tel:${agentAddress ? agentAddress : DEFAULT_PHONE_NUMBER
+                    }`}
+                >
+                  Contact Seller
+                </Button>
+              </>
             )}
             <Box mt={2}>
               <List>
@@ -474,13 +516,15 @@ const CarDetails = ({ details, handleClickBack }) => {
           </Card>
         </Grid>
       </Grid>
-      {openCall && (
-        <CallAgentDialog
-          open={openCall}
-          onClose={handleClose}
-          phonNumber={agentAddress || DEFAULT_PHONE_NUMBER}
-        />
-      )}
+      {
+        openCall && (
+          <CallAgentDialog
+            open={openCall}
+            onClose={handleClose}
+            phonNumber={agentAddress || DEFAULT_PHONE_NUMBER}
+          />
+        )
+      }
 
       <SpecificationDialog
         isOpen={specificationOpen}
