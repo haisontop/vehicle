@@ -7,9 +7,9 @@ import { SearchProvider } from "../src/contexts/SearchContext";
 import ThemePrimaryColor from "../src/components/ThemePrimaryColor";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { useRouter } from "next/router";
+import { CssBaseline } from "@mui/material";
 
 const MyApp = ({ Component, pageProps }) => {
-  
   React.useEffect(() => {
     TagManager.initialize({
       gtmId: process.env.GOOGLE_TAG,
@@ -25,6 +25,7 @@ const MyApp = ({ Component, pageProps }) => {
         <SettingsProvider>
           <ThemeConfig>
             <ThemePrimaryColor>
+              <CssBaseline />
               <Layout {...pageProps}>
                 <Component {...pageProps} />
               </Layout>

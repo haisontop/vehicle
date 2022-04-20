@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useCallback } from "react";
 
 const initialState = {
   baseURL: "",
@@ -58,26 +58,32 @@ function SearchProvider({ children }) {
     searchURL: initialState.searchURL,
     agentAddress: initialState.agentAddress,
     userId: initialState.userId,
-    cookieEnabled: initialState.cookieEnabled,
+    cookieEnabled: null,
   });
 
-  const onChangeUserId = (userId) => {
-    setSearchSettings({
-      ...searchSettings,
-      userId,
-    });
+  const onChangeUserId = useCallback(
+    (userId) => {
+      setSearchSettings((searchSettings) => ({
+        ...searchSettings,
+        userId,
+      }));
 
-    storeUserId(userId);
-  };
+      storeUserId(userId);
+    },
+    [setSearchSettings]
+  );
 
-  const onChangeCookieEnabled = (cookieEnabled) => {
-    setSearchSettings({
-      ...searchSettings,
-      cookieEnabled,
-    });
+  const onChangeCookieEnabled = useCallback(
+    (cookieEnabled) => {
+      setSearchSettings((searchSettings) => ({
+        ...searchSettings,
+        cookieEnabled,
+      }));
 
-    storeCookieEnabled(cookieEnabled);
-  };
+      storeCookieEnabled(cookieEnabled);
+    },
+    [setSearchSettings]
+  );
 
   useEffect(() => {
     const userId = restoreUserId();
@@ -85,14 +91,12 @@ function SearchProvider({ children }) {
     if (userId) {
       onChangeUserId(userId);
     }
-  }, []);
+  }, [onChangeUserId]);
 
   useEffect(() => {
     const cookieEnabled = restoreCookieEnabled();
 
-    if (cookieEnabled) {
-      onChangeCookieEnabled(cookieEnabled);
-    }
+    onChangeCookieEnabled(cookieEnabled ? cookieEnabled : undefined);
   }, []);
 
   const onChangeSearchURL = (value) => {
@@ -127,7 +131,7 @@ function SearchProvider({ children }) {
         onChangeAgentAddress,
         onChangeBaseURL,
         onChangeUserId,
-        onChangeCookieEnabled
+        onChangeCookieEnabled,
       }}
     >
       {children}

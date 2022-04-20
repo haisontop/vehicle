@@ -36,7 +36,7 @@ const CarsList = ({ cars, loading, handleClickCard }) => {
 
   return (
     <>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} py={2}>
         {loading ? (
           <>
             {Array.from(Array(9).keys()).map((item) => (

@@ -40,16 +40,13 @@ import TagManager from "react-gtm-module";
 import { TransmissionTypeIcon } from "../icons/TransmissionTypeIcon";
 import { DealerIcon } from "../icons/DealerIcon";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { WheelIcon } from "../icons/WheelIcon";
 import { CalculatorIcon } from "../icons/CalculatorIcon";
 import SpecificationDialog from "../dialogs/SpecificationDialog";
 import RunningCostDialog from "../dialogs/RunningCostDialog";
 import axios from "axios";
-import {
-  SearchContext,
-  restoreCookieEnabled,
-} from "../../contexts/SearchContext";
+import { SearchContext, restoreCookieEnabled } from "../../contexts/SearchContext";
 import { ArrowBack } from "@mui/icons-material";
 import CallAgentDialog from "../dialogs/CallAgentDialog";
 
@@ -87,6 +84,10 @@ const CarDetails = ({ details, handleClickBack }) => {
       return media.images.map((image) => ({
         original: image.href,
         thumbnail: image.href,
+        originalWidth: '100%',
+        originalHeight: 'auto',
+        originalClass: "gallery-original",
+        thumbnailClass: 'gallery-thumbnail'
       }));
     }
     return [];
@@ -148,12 +149,12 @@ const CarDetails = ({ details, handleClickBack }) => {
         ) {
           setFeatures(fetchResult.data.data);
         }
-      } catch (error) {}
+      } catch (error) { }
     }
 
     fetchData();
 
-    return () => {};
+    return () => { };
   }, [searchId]);
 
   const handleClickSave = async () => {
@@ -163,9 +164,9 @@ const CarDetails = ({ details, handleClickBack }) => {
       },
     });
     if (cookieEnabled === null || cookieEnabled === "false") {
-      onChangeCookieEnabled(undefined);
+      onChangeCookieEnabled(undefined)
     }
-    router.push({ query: { ...router.query, user: userId } });
+    router.push({ query: { ...router.query, user: userId } })
     if (userId) {
       try {
         const fetchResult = await axios.post(
@@ -202,57 +203,39 @@ const CarDetails = ({ details, handleClickBack }) => {
     <>
       <Grid container spacing={4} pb={{ xs: 2, sm: 0 }}>
         <Grid item xs={12}>
+
           <Button
             variant="text"
+            sx={{color:'primary.main'}}
             startIcon={<ArrowBack />}
             onClick={handleClickBack}
           >
             Back
           </Button>
+
         </Grid>
         <Grid item xs={12} md={7} position="relative">
-          {!isFavorite && (
-            <IconButton
-              sx={{
-                position: "absolute",
-                zIndex: 20,
-                top: "3rem",
-                right: "1rem",
-                bgcolor: "primary.main",
-                color: "white",
-              }}
-              onClick={handleClickSave}
-            >
-              <FavoriteBorderIcon />
-            </IconButton>
-          )}
-
           <ImageGallery items={images} />
+          <IconButton size="large" sx={{ position: 'absolute', zIndex: 20, top: '3rem', right: '1rem', bgcolor: 'primary.main', color: 'white' }}
+            onClick={handleClickSave}
+          >
+            <FavoriteBorderIcon />
+          </IconButton>
+
         </Grid>
         <Grid item xs={12} md={5}>
-          <Card
-            sx={{
-              p: 3,
-              display: "flex",
-              flexDirection: "column",
-              bgcolor: "common.white",
-              gap: 3,
-            }}
-          >
+          <Card sx={{ p: 3, display: 'flex', flexDirection: 'column', borderRadius: 0.5, bgcolor: 'common.white', gap: 3 }}>
+
             <Box
               display="flex"
-              alignItems={"center"}
+              alignItems={'center'}
               justifyContent="space-between"
               spacing={0.5}
             >
               <Typography
                 variant="h3"
                 color="primary"
-                sx={{
-                  fontWeight: 700,
-                  lineHeight: 1.2,
-                  fontSize: { xs: "35px", sm: "50px", lg: "70px" },
-                }}
+                sx={{ fontWeight: 700, lineHeight: 1.2 }}
               >
                 {parseInt(forecourtPrice.amountGBP)
                   .toLocaleString("en-US", {
@@ -264,7 +247,8 @@ const CarDetails = ({ details, handleClickBack }) => {
               {adverts &&
                 adverts.retailAdverts &&
                 adverts.retailAdverts.priceIndicatorRating &&
-                adverts.retailAdverts.priceIndicatorRating !== "NOANALYSIS" && (
+                adverts.retailAdverts.priceIndicatorRating !==
+                "NOANALYSIS" && (
                   <Chip
                     label={getPriceIndicatorLabel(
                       adverts.retailAdverts.priceIndicatorRating
@@ -280,59 +264,46 @@ const CarDetails = ({ details, handleClickBack }) => {
                       textTransform: "capitalize",
                       borderRadius: "3px",
                       fontSize: "0.85em",
-                      fontWeight: 600,
                       p: 0.5,
                       lineHeight: 1.33,
                     }}
                   />
                 )}
             </Box>
-            <Typography
-              variant="h3"
-              sx={{
-                lineHeight: 1.2,
-                fontSize: { xs: "30px", sm: "40px", lg: "50px" },
-                fontWeight: 700,
-              }}
-            >
+            <Typography variant="h4" fontWeight={600} sx={{ lineHeight: 1.2 }}>
               {vehicle.make} {vehicle.model}
             </Typography>
-            <Box
-              display="flex"
-              direction="row"
-              gap={0.5}
-              flexWrap="wrap"
-              color="#23325C"
-            >
-              <Stack direction="row" spacing={0.6} alignItems="center">
-                <TransmissionTypeIcon />
-                <Typography variant="body1" whiteSpace="nowrap">
+            <Box display="flex" direction="row" gap={0.5} flexWrap="wrap" alignItems={'center'}>
+             
+                <TransmissionTypeIcon sx={{color:'primary.main'}}/>
+                <Typography variant="body1" whiteSpace="nowrap" sx={{color:'primary.main'}}>
                   {vehicle.odometerReadingMiles} miles
                 </Typography>
-              </Stack>
               <Divider
                 orientation="vertical"
                 variant="middle"
                 flexItem
                 sx={{
+                  color:'primary.main',
                   borderRightWidth: 2,
                   borderColor: "rgba(35, 35, 35, 1)",
                   my: 0.5,
                 }}
               />
-              <Typography variant="body1" whiteSpace="nowrap">
+              <Typography variant="body1" whiteSpace="nowrap" sx={{color:'primary.main'}}>
                 {vehicle.transmissionType}
               </Typography>
               <Divider
                 orientation="vertical"
                 flexItem
                 sx={{
+                  color:'primary.main',
                   borderRightWidth: 2,
                   borderColor: "rgba(35, 35, 35, 1)",
                   my: 0.5,
                 }}
               />
-              <Typography variant="body1" whiteSpace="nowrap">
+              <Typography variant="body1" whiteSpace="nowrap" sx={{color:'primary.main'}}>
                 {vehicle.fuelType}
               </Typography>
               {vehicle.emissionClass && (
@@ -341,12 +312,13 @@ const CarDetails = ({ details, handleClickBack }) => {
                     orientation="vertical"
                     flexItem
                     sx={{
+                      color:"primary.main",
                       borderRightWidth: 2,
                       borderColor: "rgba(35, 35, 35, 1)",
                       my: 0.5,
                     }}
                   />
-                  <Typography variant="body1" whiteSpace="nowrap">
+                  <Typography variant="body1" whiteSpace="nowrap" sx={{color:'primary.main'}}>
                     ULEZ
                   </Typography>
                 </>
@@ -395,14 +367,15 @@ const CarDetails = ({ details, handleClickBack }) => {
                   Relax
                 </Typography>
                 <Typography variant="body1" lineHeight={"22px"} mt={1.5}>
-                  Every new and used Toyota, is eligible to be covered by up to
-                  10 years’ manufacturer warranty through Toyota Relax. This is
-                  provided through an initial 3 years manufacturer warranty from
-                  the vehicle’s registration date that can be extended with
-                  regular servicing at a Toyota dealer. 12 months warranty is
-                  included with every Toyota Service, up to 100,000 miles or 10
-                  years, whichever comes first, giving you a chance to relax in
-                  the knowledge that you and your vehicle are in safe hands.
+                  Every new and used Toyota, is eligible to be covered by up
+                  to 10 years’ manufacturer warranty through Toyota Relax.
+                  This is provided through an initial 3 years manufacturer
+                  warranty from the vehicle’s registration date that can be
+                  extended with regular servicing at a Toyota dealer. 12
+                  months warranty is included with every Toyota Service, up to
+                  100,000 miles or 10 years, whichever comes first, giving you
+                  a chance to relax in the knowledge that you and your vehicle
+                  are in safe hands.
                   <Link
                     href="https://www.toyota.co.uk/owners/warranty/toyota-warranty"
                     underline="none"
@@ -414,35 +387,24 @@ const CarDetails = ({ details, handleClickBack }) => {
               </Box>
             )}
 
-            <Box gap={3}>
-              {isFavorite && (
-                <Button
-                  variant="contained"
-                  color="error"
-                  id="delete-favorites-button"
-                  fullWidth
-                  sx={{ borderRadius: 5 }}
-                  onClick={handleDeleteFavorite}
-                >
-                  Delete
-                </Button>
-              )}
-              {!isAgent && (
-                <Button
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  sx={{ borderRadius: 5 }}
-                  onClick={handleClickOpen}
-                >
-                  Contact Seller
-                </Button>
-              )}
-            </Box>
+
+
+            {!isAgent && (
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                fullWidth
+                sx={{ borderRadius: 5 }}
+                onClick={handleClickOpen}
+              >
+                Contact Seller
+              </Button>
+            )}
             <Box mt={2}>
               <List>
                 <Divider />
-                <ListItem disablePadding>
+                <ListItem >
                   <ListItemButton onClick={handleOpenSpecification}>
                     <ListItemIcon>
                       <WheelIcon />
@@ -454,7 +416,7 @@ const CarDetails = ({ details, handleClickBack }) => {
                   </ListItemButton>
                 </ListItem>
                 <Divider />
-                <ListItem disablePadding>
+                <ListItem >
                   <ListItemButton onClick={handleOpenRunningCost}>
                     <ListItemIcon>
                       <CalculatorIcon />
@@ -468,61 +430,14 @@ const CarDetails = ({ details, handleClickBack }) => {
                 <Divider />
               </List>
             </Box>
+
           </Card>
         </Grid>
       </Grid>
-      {openCall && (
-        <CallAgentDialog
-          open={openCall}
-          onClose={handleClose}
-          phonNumber={agentAddress || DEFAULT_PHONE_NUMBER}
-        />
-      )}
+      {openCall &&
+        <CallAgentDialog open={openCall} onClose={handleClose} phonNumber={agentAddress || DEFAULT_PHONE_NUMBER} />
+      }
 
-      {/* <Paper
-        sx={{
-          position: "fixed",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          display: { xs: "block", sm: "none" },
-        }}
-        elevation={3}
-      >
-        <BottomNavigation showLabels>
-          <Box
-            width={1}
-            px={2}
-            sx={{
-              background: "#fff",
-              boxShadow: "rgb(0 0 0 / 10%) 0px -1px 4px 0px",
-            }}
-            display="flex"
-            alignItems="center"
-          >
-            <Grid container spacing={1}>
-              <Grid item xs={12}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  id="call-agent-button"
-                  href={`tel:${
-                    agentAddress ? agentAddress : DEFAULT_PHONE_NUMBER
-                  }`}
-                >
-                  Call Agent
-                </Button>
-              </Grid>
-              <Grid item xs={6}>
-                <Button variant="contained" color="primary" fullWidth>
-                  Message Agent
-                </Button>
-              </Grid>
-            </Grid>
-          </Box>
-        </BottomNavigation>
-      </Paper> */}
 
       <SpecificationDialog
         isOpen={specificationOpen}

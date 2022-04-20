@@ -12,7 +12,6 @@ import {
 } from "@mui/material";
 import { CarsFilter } from "../components/filter";
 import { CarsList } from "../components/cars";
-import { makeStyles } from "@mui/styles";
 import { useSearchSettings } from "../hooks";
 import { cleanSearchParams, encryption } from "../utils";
 import CarDetails from "../components/cars/CarDetails";
@@ -38,24 +37,7 @@ import {
 
 const DEFAULT_PAGE_SIZE = 9;
 
-const useStyles = makeStyles((theme) => {
-  return {
-    filterContainer: {
-      [theme.breakpoints.down("sm")]: {
-        position: "fixed",
-        top: theme.spacing(8),
-        zIndex: 2,
-        width: "100%",
-        padding: 10,
-        background: theme.palette.common.white,
-        boxShadow: theme.shadows[1],
-      },
-    },
-  };
-});
-
 const CarsView = () => {
-  const classes = useStyles();
   const router = useRouter();
   const [cars, setCars] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
@@ -360,8 +342,7 @@ const CarsView = () => {
   };
 
   return (
-    <Container maxWidth={false} sx={{ pt: 2, pb: 6 }}>
-      <Grid container spacing={2} sx={{ position: "relative" }}>
+      <Grid container pb={6} p={2} spacing={2} sx={{ position: "relative" }}>
         {selectedId ? (
           <>
             {currentVehicle ? (
@@ -376,6 +357,7 @@ const CarsView = () => {
                 <Grid item xs={12}>
                   <Button
                     variant="text"
+                    sx={{color:'primary.main'}}
                     startIcon={<ArrowBack />}
                     onClick={handleClickBack}
                   >
@@ -424,7 +406,7 @@ const CarsView = () => {
                 havingError={havingError}
               />
             </Grid>
-            <Grid item xs={12} sm={9} md={8}>
+            <Grid item xs={12} sm={9} md={8} py={3}>
               <Stack spacing={2}>
                 <CarsList
                   cars={cars}
@@ -448,7 +430,6 @@ const CarsView = () => {
           </>
         )}
       </Grid>
-    </Container>
   );
 };
 

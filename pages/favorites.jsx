@@ -87,7 +87,8 @@ export default function DetailsPage({ baseOrigin }) {
       <Grid container spacing={2} sx={{ position: "relative" }}>
         <Grid item xs={12}>
           <Button
-            variant="contained"
+            variant="text"
+            sx={{color:'primary.main'}}
             startIcon={<ArrowBack />}
             onClick={handleClickBack}
           >

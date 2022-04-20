@@ -1,11 +1,4 @@
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 
 export default function CallAgentDialog({ open, onClose, phonNumber }) {
   return (
@@ -16,7 +9,7 @@ export default function CallAgentDialog({ open, onClose, phonNumber }) {
       fullWidth
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
-      disableScrollLock
+
     >
       <DialogTitle id="alert-dialog-title">Call Agent</DialogTitle>
       <DialogContent>
@@ -30,5 +23,6 @@ export default function CallAgentDialog({ open, onClose, phonNumber }) {
         </Button>
       </DialogActions>
     </Dialog>
-  );
+  )
+
 }

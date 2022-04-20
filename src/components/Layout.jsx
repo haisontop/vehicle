@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Navbar } from "./Navbar";
-import { SearchContext } from "../contexts/SearchContext";
+import { SearchContext, restoreUserId } from "../contexts/SearchContext";
 import { useRouter } from "next/router";
 import CookieModal from "./CookiePopup";
 
@@ -11,7 +11,7 @@ const LayoutRoot = styled("div")(({ theme }) => ({
   flex: "1 1 auto",
   maxWidth: "100%",
   paddingTop: 64,
-  backgroundColor:theme.palette.grey[500_8]
+  backgroundColor: theme.palette.grey[500_8]
 }));
 
 const Layout = (props) => {
@@ -22,9 +22,10 @@ const Layout = (props) => {
   const { userId, onChangeUserId, cookieEnabled } = useContext(SearchContext);
 
   React.useEffect(() => {
-    if (router.query.user && cookieEnabled) {
-      if (!userId || router.query.user !== userId)
+    if (router.query.user && cookieEnabled === "true") {
+      if (!userId || router.query.user !== userId) {
         onChangeUserId(router.query.user);
+      }
     }
   }, [router.query.user, userId, onChangeUserId, cookieEnabled]);
 

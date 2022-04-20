@@ -23,7 +23,6 @@ import { useRouter } from "next/router";
 import * as React from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import CloseIcon from "@mui/icons-material/Close";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import SearchIcon from '@mui/icons-material/Search';
 import { useSearchSettings } from "../hooks";
 import { SearchContext, restoreCookieEnabled } from "../contexts/SearchContext";
@@ -36,7 +35,7 @@ import {
 } from "../utils";
 import { DEFAULT_PHONE_NUMBER } from "./cars/CarDetails";
 import { Logo } from "./icons/Logo";
-import { CustomMenuIcon } from "./icons/CustomMenuIcon";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import TagManager from "react-gtm-module";
 
 const NavbarRoot = styled(AppBar)(({ theme }) => ({
@@ -117,7 +116,6 @@ export const Navbar = (props) => {
     );
   }, [baseURL, router.asPath, currentAddress]);
 
-
   const handleClickFavorites = () => {
     TagManager.dataLayer({
       dataLayer: {
@@ -130,9 +128,7 @@ export const Navbar = (props) => {
 
     if (cookieEnabled === null || cookieEnabled === "false") {
       onChangeCookieEnabled(undefined)
-    }
-
-    if (cookieEnabled === "true")
+    } else if (cookieEnabled === "true" || cookieEnabled === true)
       router.push({
         pathname: "/favorites",
         query: filteredParams,
@@ -143,7 +139,7 @@ export const Navbar = (props) => {
     const filteredParams = cleanSearchParams({
       ...router.query,
       ...(router.query.id ? { id: null } : null),
-      favorite: null
+      favorite: null,
     });
 
     router.push({
@@ -217,16 +213,15 @@ export const Navbar = (props) => {
                 <IconButton
                   onClick={handleClickMobileMenu}
                   size="small"
-                  sx={{ ml: 2 }}
+                  sx={{ ml: 2, color: 'common.white' }}
                 >
-                  <FavoriteBorderIcon sx={{ width: "40px", height: "40px" }} />
+                  <FavoriteBorderIcon />
                 </IconButton>
                 <Menu
                   anchorEl={anchorEl}
                   open={mobileMenuOpen}
                   onClose={handleCloseMobileMenu}
                   onClick={handleCloseMobileMenu}
-                  disableScrollLock
                   PaperProps={{
                     elevation: 0,
                     sx: {
@@ -293,24 +288,26 @@ export const Navbar = (props) => {
             <>
               <Box display={{ xs: "none", sm: "none", md: "block" }}>
                 <Tooltip title="Favorites">
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    id="show-favorites-button"
+
+                  <IconButton
                     onClick={handleClickFavorites}
-                    sx={{ color: "#fff", borderWidth: 2 }}
+                    size="small"
+
+                    sx={{ ml: 2, color: 'common.white' }}
                   >
-                    Favorites
-                  </Button>
+                    <FavoriteBorderIcon />
+                  </IconButton>
                 </Tooltip>
               </Box>
               <Box display={{ sm: "block", md: "none" }}>
+
                 <IconButton
                   onClick={handleClickMobileMenu}
                   size="small"
-                  sx={{ ml: 2 }}
+
+                  sx={{ ml: 2, color: 'common.white' }}
                 >
-                  <CustomMenuIcon sx={{ width: "40px", height: "40px" }} />
+                  <FavoriteBorderIcon />
                 </IconButton>
                 <Menu
                   anchorEl={anchorEl}

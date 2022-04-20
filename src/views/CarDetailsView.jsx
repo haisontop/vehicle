@@ -5,13 +5,11 @@ import NextLink  from "next/link";
 
 const CarDetailsView = ({ lists, totalResults }) => {
   return (
-    <Container maxWidth="xl" sx={{ pt: 2, pb: 6 }}>
-      <Grid container spacing={2} sx={{ position: "relative" }}>
+      <Grid container p={2} pb={6} spacing={2} sx={{ position: "relative" }}>
         <Grid item xs={12}>
           {lists && lists.length > 0 && <CarDetails details={lists[0]} />}
         </Grid>
       </Grid>
-    </Container>
   );
 };
 
