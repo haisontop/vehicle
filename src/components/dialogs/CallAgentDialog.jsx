@@ -9,8 +9,6 @@ import {
 } from "@mui/material";
 
 export default function CallAgentDialog({ open, onClose, phonNumber }) {
-  const matches = useMediaQuery("(max-width:600px)");
-
   return (
     <Dialog
       open={open}
@@ -27,16 +25,6 @@ export default function CallAgentDialog({ open, onClose, phonNumber }) {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        {matches && (
-          <Button variant="contained">
-            <a
-              href={`tel:${phonNumber}`}
-              style={{ textDecoration: "none", color: "#fff" }}
-            >
-              Call
-            </a>
-          </Button>
-        )}
         <Button onClick={onClose} autoFocus variant="contained">
           OK
         </Button>
