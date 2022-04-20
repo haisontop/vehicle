@@ -164,199 +164,47 @@ export const Navbar = (props) => {
               sx={{ width: "135px", height: "35px", color: "transparent" }}
             />
           </Box>
-
-          {/* <Box sx={{ flexGrow: 1 }} />
-          <Input startAdornment={<SearchIcon/>} placeholder="Search" sx={{px:3 ,py:0.5, borderRadius:1, display:{xs:'none', sm:'flex'}}}/> */}
           <Box sx={{ flexGrow: 1 }} />
-          {isAgent ? (
-            <>
-              <Box display={{ xs: "none", sm: "none", md: "block" }}>
-                <Tooltip title="Contact">
+          {isAgent &&
+            <Box display={{ xs: "none", sm: "none", md: "block" }}>
+              <Tooltip title="Contact">
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  onClick={handleClickOpen}
+                  sx={{ color: "#fff", borderWidth: 2 }}
+                >
+                  Save agent phone number
+                </Button>
+              </Tooltip>
+
+              <CopyToClipboard
+                text={targetURL}
+                onCopy={() => handleOpenSnackBar()}
+              >
+                <Tooltip title="Copy URL for customer">
                   <Button
                     variant="outlined"
                     color="primary"
-                    onClick={handleClickOpen}
-                    sx={{ color: "#fff", borderWidth: 2 }}
+                    id="copy-url-button"
+                    sx={{ ml: 2, color: "#fff", borderWidth: 2 }}
                   >
-                    Save agent phone number
+                    Copy URL
                   </Button>
                 </Tooltip>
+              </CopyToClipboard>
+            </Box>
+          }
+          <Tooltip title="Favorites">
+            <IconButton
+              onClick={handleClickFavorites}
+              size="small"
 
-                <CopyToClipboard
-                  text={targetURL}
-                  onCopy={() => handleOpenSnackBar()}
-                >
-                  <Tooltip title="Copy URL for customer">
-                    <Button
-                      variant="outlined"
-                      color="primary"
-                      id="copy-url-button"
-                      sx={{ ml: 2, color: "#fff", borderWidth: 2 }}
-                    >
-                      Copy URL
-                    </Button>
-                  </Tooltip>
-                </CopyToClipboard>
-                <Tooltip title="Favorites">
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    id="show-favorites-button"
-                    onClick={handleClickFavorites}
-                    sx={{ color: "#fff", borderWidth: 2, ml: 2 }}
-                  >
-                    Favorites
-                  </Button>
-                </Tooltip>
-              </Box>
-              <Box display={{ sm: "block", md: "none" }}>
-                <IconButton
-                  onClick={handleClickMobileMenu}
-                  size="small"
-                  sx={{ ml: 2, color: 'common.white' }}
-                >
-                  <FavoriteBorderIcon />
-                </IconButton>
-                <Menu
-                  anchorEl={anchorEl}
-                  open={mobileMenuOpen}
-                  onClose={handleCloseMobileMenu}
-                  onClick={handleCloseMobileMenu}
-                  PaperProps={{
-                    elevation: 0,
-                    sx: {
-                      overflow: "visible",
-                      filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                      mt: 1.5,
-                      "& .MuiAvatar-root": {
-                        width: 32,
-                        height: 32,
-                        ml: -0.5,
-                        mr: 1,
-                      },
-                      "&:before": {
-                        content: '""',
-                        display: "block",
-                        position: "absolute",
-                        top: 0,
-                        right: 14,
-                        width: 10,
-                        height: 10,
-                        bgcolor: "background.paper",
-                        transform: "translateY(-50%) rotate(45deg)",
-                        zIndex: 0,
-                      },
-                    },
-                  }}
-                  transformOrigin={{ horizontal: "right", vertical: "top" }}
-                  anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-                >
-                  <MenuItem>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={handleClickOpen}
-                    >
-                      Save agent phone number
-                    </Button>
-                  </MenuItem>
-                  <MenuItem>
-                    <CopyToClipboard
-                      text={targetURL}
-                      onCopy={() => handleOpenSnackBar()}
-                    >
-                      <Button variant="contained" color="primary" fullWidth>
-                        Copy URL
-                      </Button>
-                    </CopyToClipboard>
-                  </MenuItem>
-                  <MenuItem>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      id="show-favorites-button"
-                      onClick={handleClickFavorites}
-                      fullWidth
-                    >
-                      Favorites
-                    </Button>
-                  </MenuItem>
-                </Menu>
-              </Box>
-            </>
-          ) : (
-            <>
-              <Box display={{ xs: "none", sm: "none", md: "block" }}>
-                <Tooltip title="Favorites">
-
-                  <IconButton
-                    onClick={handleClickFavorites}
-                    size="small"
-
-                    sx={{ ml: 2, color: 'common.white' }}
-                  >
-                    <FavoriteBorderIcon />
-                  </IconButton>
-                </Tooltip>
-              </Box>
-              <Box display={{ sm: "block", md: "none" }}>
-
-                <IconButton
-                  onClick={handleClickMobileMenu}
-                  size="small"
-
-                  sx={{ ml: 2, color: 'common.white' }}
-                >
-                  <FavoriteBorderIcon />
-                </IconButton>
-                <Menu
-                  anchorEl={anchorEl}
-                  open={mobileMenuOpen}
-                  onClose={handleCloseMobileMenu}
-                  onClick={handleCloseMobileMenu}
-                  PaperProps={{
-                    elevation: 0,
-                    sx: {
-                      overflow: "visible",
-                      filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                      mt: 1.5,
-                      "& .MuiAvatar-root": {
-                        width: 32,
-                        height: 32,
-                        ml: -0.5,
-                        mr: 1,
-                      },
-                      "&:before": {
-                        content: '""',
-                        display: "block",
-                        position: "absolute",
-                        top: 0,
-                        right: 14,
-                        width: 10,
-                        height: 10,
-                        bgcolor: "background.paper",
-                        transform: "translateY(-50%) rotate(45deg)",
-                        zIndex: 0,
-                      },
-                    },
-                  }}
-                  transformOrigin={{ horizontal: "right", vertical: "top" }}
-                  anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-                >
-                  <MenuItem>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      id="show-favorites-button"
-                      onClick={handleClickFavorites}
-                    >
-                      Favorites
-                    </Button>
-                  </MenuItem>
-                </Menu>
-              </Box>
-            </>
-          )}
+              sx={{ ml: 2, color: 'common.white' }}
+            >
+              <FavoriteBorderIcon />
+            </IconButton>
+          </Tooltip>
         </Toolbar>
       </NavbarRoot>
 
@@ -368,6 +216,7 @@ export const Navbar = (props) => {
       />
       <Dialog
         open={open}
+        onClose={()=>setOpen(false)}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         maxWidth="sm"

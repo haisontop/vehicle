@@ -70,197 +70,162 @@ const CarFavoriteCard = ({ details, handleRemoveFavorite, handleView }) => {
   return (
     <Card
       sx={{
-        height: "100%",
         p: 0,
         borderRadius: 1,
         display: "flex",
         gap: { xs: 1, sm: 4 },
         flexDirection: { xs: "column", sm: "row" },
+        justifyContent: "space-between"
       }}
     >
       <CardMedia
         component="img"
-        sx={{
-          height: { xs: "158px", sm: "200px", md: "200px" },
-          width: { xs: "100%", sm: "200px", md: "200px" },
-        }}
-        image={mainMediaUrl}
+        sx={{ height: '280px', width: { xs: "100%", sm: "400px" }, objectFit: 'cover', objectPosition: 'center' }}
+        image={mainMediaUrl || '/images/car_placeholder.svg'}
         alt="Media"
       />
+      <Stack p={{ xs: 3, md: 5 }} pt={{ xs: 1, sm: 3 }} flexGrow={1} gap={3} justifyContent={'space-between'} direction={{ xs: 'column', md: 'row' }}>
+        <Stack
+          spacing={1}
+          sx={{ flexGrow: 1, maxWidth: "400px", justifyContent: 'space-between' }}
+        >
 
-      <CardContent sx={{ px: 2, py: 1.5, flexGrow: 1 }}>
-        <Box sx={{ display: "flex" }}>
-          <Grid
-            container
-            spacing={1}
-            height="100%"
-            sx={{ flexGrow: 1, maxWidth: "400px", mr: { xs: 0, sm: 4 } }}
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+            spacing={0.5}
           >
-            <Grid item xs={12}>
-              <Box
-                display="column"
-                alignItems="start"
-                minHeight={{ xs: theme.spacing(6), md: theme.spacing(7.5) }}
-              >
-                <Typography variant="h4" sx={{ lineHeight: 1.2 }}>
-                  {vehicle.make} {vehicle.model}
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={12}>
-              <Stack
-                direction="row"
-                justifyContent="space-between"
-                spacing={0.5}
-              >
-                <Box display="flex">
-                  <Typography
-                    variant="h4"
-                    color="primary"
-                    sx={{ fontWeight: 400, lineHeight: 1.2 }}
-                  >
-                    {parseInt(forecourtPrice.amountGBP)
-                      .toLocaleString("en-US", {
-                        currency: "GBP",
-                        style: "currency",
-                      })
-                      .slice(0, -3)}
-                  </Typography>
-                </Box>
-                {adverts &&
-                  adverts.retailAdverts &&
-                  adverts.retailAdverts.priceIndicatorRating &&
-                  adverts.retailAdverts.priceIndicatorRating !==
-                    "NOANALYSIS" && (
-                    <Chip
-                      label={getPriceIndicatorLabel(
-                        adverts.retailAdverts.priceIndicatorRating
-                      )}
-                      size="small"
-                      sx={{
-                        backgroundColor: getPriceIndicatorColor(
-                          adverts.retailAdverts.priceIndicatorRating
-                        ),
-                        color: getPriceIndicatorLabelColor(
-                          adverts.retailAdverts.priceIndicatorRating
-                        ),
-                        textTransform: "capitalize",
-                        borderRadius: "3px",
-                        fontSize: "0.85em",
-                        fontWeight: 600,
-                        p: "4px",
-                        lineHeight: 1.33,
-                      }}
-                    />
+            <Typography
+              variant="h3"
+              color="primary"
+              sx={{ fontWeight: 700, lineHeight: 1.2 }}
+            >
+              {parseInt(forecourtPrice.amountGBP)
+                .toLocaleString("en-US", {
+                  currency: "GBP",
+                  style: "currency",
+                })
+                .slice(0, -3)}
+            </Typography>
+            {adverts &&
+              adverts.retailAdverts &&
+              adverts.retailAdverts.priceIndicatorRating &&
+              adverts.retailAdverts.priceIndicatorRating !==
+              "NOANALYSIS" && (
+                <Chip
+                  label={getPriceIndicatorLabel(
+                    adverts.retailAdverts.priceIndicatorRating
                   )}
-              </Stack>
-            </Grid>
-            <Grid item xs={12} minHeight="54px">
-              <Box display="flex" direction="row" gap={0.5} flexWrap="wrap">
-                <Stack direction="row" spacing={0.6} alignItems="center">
-                  <TransmissionTypeIcon />
-                  <Typography variant="body1" whiteSpace="nowrap">
-                    {vehicle.odometerReadingMiles} miles
-                  </Typography>
-                </Stack>
-                <Divider
-                  orientation="vertical"
-                  variant="middle"
-                  flexItem
+                  size="small"
                   sx={{
-                    borderRightWidth: 2,
-                    borderColor: "rgba(35, 35, 35, 1)",
-                    my: 0.5,
+                    backgroundColor: getPriceIndicatorColor(
+                      adverts.retailAdverts.priceIndicatorRating
+                    ),
+                    color: getPriceIndicatorLabelColor(
+                      adverts.retailAdverts.priceIndicatorRating
+                    ),
+                    textTransform: "capitalize",
+                    borderRadius: "3px",
+                    fontSize: "0.85em",
+                    p: "4px",
+                    lineHeight: 1.33,
                   }}
                 />
-                <Typography variant="body1" whiteSpace="nowrap">
-                  {vehicle.transmissionType}
-                </Typography>
-                <Divider
-                  orientation="vertical"
-                  flexItem
-                  sx={{
-                    borderRightWidth: 2,
-                    borderColor: "rgba(35, 35, 35, 1)",
-                    my: 0.5,
-                  }}
-                />
-                <Typography variant="body1" whiteSpace="nowrap">
-                  {vehicle.fuelType}
-                </Typography>
-                {vehicle.emissionClass && (
-                  <>
-                    <Divider
-                      orientation="vertical"
-                      flexItem
-                      sx={{
-                        borderRightWidth: 2,
-                        borderColor: "rgba(35, 35, 35, 1)",
-                        my: 0.5,
-                      }}
-                    />
-                    <Typography variant="body1" whiteSpace="nowrap">
-                      ULEZ
-                    </Typography>
-                  </>
-                )}
-              </Box>
-            </Grid>
-            {isAgent && (
-              <Grid item xs={12} sm={12}>
-                <Stack
-                  direction="row"
-                  spacing={0.6}
-                  alignItems="center"
-                  width="100%"
-                >
-                  <DealerIcon />
-                  <Typography>{advertiser.name}: </Typography>
-                  <Typography>{advertiser.phone}</Typography>
-                </Stack>
-              </Grid>
-            )}
-          </Grid>
-          <Stack spacing={2} alignItems="center" sx={{ ml: "auto" }}>
-            <Button
-              variant="contained"
-              sx={{ display: { xs: "none", sm: "flex" } }}
-              onClick={handleClickView}
-              fullWidth
-            >
-              View
-            </Button>
-            <Button
-              variant="contained"
-              onClick={handleDeleteFavorite}
-              sx={{ display: { xs: "none", sm: "flex" } }}
-              color="error"
-              fullWidth
-              id="delete-favorites-button"
-            >
-              Delete
-            </Button>
+              )}
           </Stack>
-        </Box>
-        <Box width="100%" display="flex">
+          <Typography variant="h4" sx={{ fontWeight: 600, lineHeight: 1.2 }}>
+            {vehicle.make} {vehicle.model}
+          </Typography>
+          <Box flexGrow={1} />
+          <Box display="flex" direction="row" alignItems="center" gap={0.5} flexWrap="wrap">
+            <TransmissionTypeIcon sx={{ color: 'primary.main' }} />
+            <Typography variant="body1" whiteSpace="nowrap" sx={{ color: 'primary.main' }}>
+              {vehicle.odometerReadingMiles} miles
+            </Typography>
+            <Divider
+              orientation="vertical"
+              variant="middle"
+              flexItem
+
+              sx={{
+                color: 'primary.main',
+                borderRightWidth: 2,
+                borderColor: "rgba(35, 35, 35, 1)",
+                my: 0.5,
+              }}
+            />
+            <Typography variant="body1" whiteSpace="nowrap" sx={{ color: 'primary.main' }}>
+              {vehicle.transmissionType}
+            </Typography>
+            <Divider
+              orientation="vertical"
+              flexItem
+              sx={{
+                color: 'primary.main',
+                borderRightWidth: 2,
+                borderColor: "rgba(35, 35, 35, 1)",
+                my: 0.5,
+              }}
+            />
+            <Typography variant="body1" whiteSpace="nowrap" sx={{ color: 'primary.main' }}>
+              {vehicle.fuelType}
+            </Typography>
+            {vehicle.emissionClass && (
+              <>
+                <Divider
+                  orientation="vertical"
+                  flexItem
+                  sx={{
+                    color: 'primary.main',
+                    borderRightWidth: 2,
+                    borderColor: "rgba(35, 35, 35, 1)",
+                    my: 0.5,
+                  }}
+                />
+                <Typography variant="body1" whiteSpace="nowrap" sx={{ color: 'primary.main' }}>
+                  ULEZ
+                </Typography>
+              </>
+            )}
+          </Box>
+          {isAgent && (
+            <Stack
+              direction="row"
+              spacing={0.6}
+              alignItems="center"
+              width="100%"
+            >
+              <DealerIcon />
+              <Typography>{advertiser.name}: </Typography>
+              <Typography>{advertiser.phone}</Typography>
+            </Stack>
+          )}
+        </Stack>
+        <Stack spacing={2} pb={{ xs: 2, sm: 0 }} flexGrow={1} justifyContent="center" alignItems={{ xs: 'center', sm: 'end' }} direction={{ xs: 'row', md: 'column' }}>
           <Button
-            variant="contained"
-            sx={{ display: { xs: "flex", sm: "none" } }}
+            variant="outlined"
             onClick={handleClickView}
+            fullWidth
+            size="large"
+            sx={{ borderRadius: 5, maxWidth: '220px' }}
           >
             View
           </Button>
           <Button
             variant="contained"
             onClick={handleDeleteFavorite}
-            sx={{ display: { xs: "flex", sm: "none" }, ml: "auto" }}
             color="error"
-            id="delete-favorites-button"
+            fullWidth
+            size="large"
+            sx={{ borderRadius: 5, maxWidth: '220px' }}
           >
             Delete
           </Button>
-        </Box>
-      </CardContent>
+        </Stack>
+      </Stack>
+
+
     </Card>
   );
 };

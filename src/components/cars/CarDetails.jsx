@@ -404,8 +404,8 @@ const CarDetails = ({ details, handleClickBack }) => {
             <Box mt={2}>
               <List>
                 <Divider />
-                <ListItem >
-                  <ListItemButton onClick={handleOpenSpecification}>
+                <ListItem sx={{px:0}}>
+                  <ListItemButton sx={{px:0}} onClick={handleOpenSpecification}>
                     <ListItemIcon>
                       <WheelIcon />
                     </ListItemIcon>
@@ -416,8 +416,8 @@ const CarDetails = ({ details, handleClickBack }) => {
                   </ListItemButton>
                 </ListItem>
                 <Divider />
-                <ListItem >
-                  <ListItemButton onClick={handleOpenRunningCost}>
+                <ListItem sx={{px:0}}>
+                  <ListItemButton sx={{px:0}} onClick={handleOpenRunningCost}>
                     <ListItemIcon>
                       <CalculatorIcon />
                     </ListItemIcon>

@@ -95,7 +95,7 @@ export default function DetailsPage({ baseOrigin }) {
             Back
           </Button>
         </Grid>
-        <Grid item xs={12} container spacing={2}>
+        <Grid item xs={12} container spacing={3}>
           {vehicles &&
             vehicles.length > 0 &&
             vehicles.map((car) => (
