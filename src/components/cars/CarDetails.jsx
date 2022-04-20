@@ -98,15 +98,22 @@ const CarDetails = ({ details, handleClickBack }) => {
   const images = React.useMemo(() => {
     if (media && media.images && media.images.length > 0) {
       return media.images.map((image) => ({
-        original: image.href,
-        thumbnail: image.href,
+        original: image?.href || '/images/car_placeholder.svg',
+        thumbnail: image?.href || '/images/car_placeholder.svg',
         originalWidth: "100%",
         originalHeight: "auto",
         originalClass: "gallery-original",
         thumbnailClass: "gallery-thumbnail",
       }));
     }
-    return [];
+    return [
+      {
+        original: '/images/car_placeholder.svg',
+        thumbnail: '/images/car_placeholder.svg',
+        originalWidth: "100%",
+        originalHeight: "auto",
+      }
+    ];
   }, [media]);
 
   const agentAddress = React.useMemo(() => {
